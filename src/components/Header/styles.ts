@@ -62,6 +62,10 @@ export const LocationSelector = styled.button`
 
   border-radius: 6px;
 
+  &:focus{
+    outline: 2px solid black;
+  }
+
   span{
     width: 60%;
   }
@@ -78,4 +82,8 @@ export const CartWrapper = styled.button`
   height: 38px;
 
   border-radius: 6px;
+
+  &:focus{
+    outline: 2px solid black;
+  }
 `

@@ -33,8 +33,7 @@ export const HeroHeaderContainer = styled.header`
   }
   @media (max-width: 768px) {
     justify-content: center;
-    min-height: calc(100vh - ${props => props.theme["heights"]["header-height"]});
-    max-height: 628px;
+    min-height: calc(92vh - ${props => props.theme["heights"]["header-height"]});
     .hero-img{
       width: 80vw;
       max-width: 468px;
@@ -153,6 +152,9 @@ export const Benefit = styled.span`
 
   @media(max-width: 1200px){
     min-width: 294px;
+  }
+  @media(max-width: 428px){
+    min-width: 244px;
   }
 `
 const BENEFITICON_COLORS = {
