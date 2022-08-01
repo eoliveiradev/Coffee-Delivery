@@ -1,15 +1,18 @@
 import { ProductDisplay } from "../ProductDisplay/ProductDisplay";
-import { CoffeesMenuContainer } from "./styles";
+import { Coffees, CoffeesMenuContainer } from "./styles";
 import { coffeItemType, MenuItems } from "../../data/Menu/MenuItems";
 
 export function CoffesMenu(){
   
   return(
     <CoffeesMenuContainer>
-      {MenuItems.map(item =>(
-        <ProductDisplay product={item}/>
-      ))}
-      
+      <h1 id="title">Nossos Cafés</h1>
+      <Coffees>
+        {MenuItems.map(item =>(
+          <ProductDisplay product={item}/>
+        ))}
+      </Coffees>
+
 
     </CoffeesMenuContainer>
   )
