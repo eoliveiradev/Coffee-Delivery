@@ -9,7 +9,7 @@ export const LocationSelectionContainer = styled.div`
   gap: 10px;
   
   position: absolute;
-  bottom: -532px;
+  bottom: -538px;
 
   height: 558px;
   width: 75vw;
@@ -37,10 +37,16 @@ export const SelectLocationButton = styled.button`
   font-size: 1rem;
   font-weight: bold;
 
+  border-radius: 6px 6px 0px 0px;
   border-bottom: 1px solid ${props => props.theme["product-colors"]["purple-dark"]};
   background-color:  inherit;
 
   padding-bottom: 0;
+
+  &:focus{
+    background-color: ${props => props.theme["product-colors"]["purple-light"]};
+    color: ${props => props.theme["product-colors"]["purple-dark"]};
+  }
 
   &:first-child{
     margin-top: 15px;

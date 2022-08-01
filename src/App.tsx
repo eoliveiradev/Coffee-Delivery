@@ -1,7 +1,5 @@
 import { BrowserRouter} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import {images} from './data/Menu';
-import { LayoutContainer } from './layouts/styles';
 import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/themes/defaultTheme';
@@ -13,7 +11,6 @@ function App() {
         <Router />
       </BrowserRouter>
     </ThemeProvider>
-
   )
 }
 

@@ -52,7 +52,7 @@ export function ProductDisplay(props : productDisplayProps) {
               <ShoppingCart
                 size={22}
                 weight="fill"
-                color={defaultTheme["base-colors"]["white"]}
+                color={defaultTheme["base-colors"]["base-card"]}
               />
             </AddToCartButton>
           </AddToCartSection>

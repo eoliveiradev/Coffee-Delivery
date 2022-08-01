@@ -2,24 +2,19 @@ import { CartWrapper, DefaultHeaderContainer, HeaderNavigation, InnerHeader, Loc
 import logo from "../../assets/images/logo.svg"
 import { MapPin, ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
-import{ useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
 import { LocationContext } from "../../layouts/DefaultLayout";
 
+interface LocationSelectionMenuContextType{
+  setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
+  isSelectingLocation: boolean;
+}
+export const LocationSelectionMenuContext = createContext({} as LocationSelectionMenuContextType);
+
 export function DefaultHeader() {
-
   const [isSelectingLocation, setIsSelectingLocation] =useState(false);
-  const {location, setLocation} = useContext(LocationContext)
-  
-  console.log(location)
-
-  function handleLocationSelectionMenu(action : string){
-    if(action === "close"){
-      setIsSelectingLocation(false);
-    }else if(action === "toggle"){
-      setIsSelectingLocation(!isSelectingLocation)
-    }
-  }
+  const { location } = useContext(LocationContext)
 
   return (
     <DefaultHeaderContainer>
@@ -28,10 +23,10 @@ export function DefaultHeader() {
         <img src={logo}></img>
 
         <HeaderNavigation
-          onMouseLeave={() =>handleLocationSelectionMenu("close")}
+          onMouseLeave={() => setIsSelectingLocation(false)}
         >
           <LocationSelector 
-            onClick={() => handleLocationSelectionMenu("toggle")}
+            onClick={() => setIsSelectingLocation(!isSelectingLocation)}
           >
             <MapPin 
               size={22} 
@@ -42,16 +37,24 @@ export function DefaultHeader() {
               {location}
             </span>
           </LocationSelector>
+          <LocationSelectionMenuContext.Provider
+            value={{
+              isSelectingLocation,
+              setIsSelectingLocation
+            }}
+          >
+            {isSelectingLocation && (
+                <LocationSelectionMenu />
+            )}
+          </LocationSelectionMenuContext.Provider>
 
-          {isSelectingLocation && (
-              <LocationSelectionMenu />
-          )}
-
-          <CartWrapper>
+          <CartWrapper 
+            onFocus={() => setIsSelectingLocation(false)}
+          >
             <ShoppingCart 
               size={22} 
               weight="fill" 
-              color={defaultTheme["product-colors"]["yellow-dark"]}
+              
             />
           </CartWrapper>
         </HeaderNavigation>

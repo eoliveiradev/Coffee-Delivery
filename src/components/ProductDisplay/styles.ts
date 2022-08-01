@@ -125,4 +125,16 @@ export const AddToCartButton = styled.button`
   border-radius: 6px;
   
   background-color: ${props => props.theme["product-colors"]["purple-dark"]};
+
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover{
+    background-color: ${props => props.theme["product-colors"]["purple"]};
+  }
+
+  &:focus-visible{
+    outline: 2px solid black;
+    outline-offset: 2px;
+    background-color: ${props => props.theme["product-colors"]["purple"]};
+  }
 `

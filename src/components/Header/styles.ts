@@ -62,8 +62,9 @@ export const LocationSelector = styled.button`
 
   border-radius: 6px;
 
-  &:focus{
+  &:focus-visible, :hover{
     outline: 2px solid black;
+    outline-offset: 2px;
   }
 
   span{
@@ -76,14 +77,16 @@ export const CartWrapper = styled.button`
   justify-content: center;
   align-items: center;
 
-  background-color: #F1E9C9;
+  background-color: ${props => props.theme["product-colors"]["yellow-light"]};
+  color: ${props => props.theme["product-colors"]["yellow-dark"]};
 
   width: 38px;
   height: 38px;
 
   border-radius: 6px;
 
-  &:focus{
+  &:focus-visible, :hover{
     outline: 2px solid black;
+    outline-offset: 2px;
   }
 `
