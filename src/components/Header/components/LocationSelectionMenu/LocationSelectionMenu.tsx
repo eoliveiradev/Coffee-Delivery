@@ -50,7 +50,6 @@ export function LocationSelectionMenu() {
     
     return () => {
       window.removeEventListener('keydown', handleKeyDown);  
-      console.log("unmounted")
     }
   }, [isSelectingLocation])
 

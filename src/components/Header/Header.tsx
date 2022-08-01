@@ -5,6 +5,7 @@ import { defaultTheme } from "../../styles/themes/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
 import { LocationContext } from "../../layouts/DefaultLayout";
+import { ShoppingCartContext } from "../../App";
 
 interface LocationSelectionMenuContextType{
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,6 +16,7 @@ export const LocationSelectionMenuContext = createContext({} as LocationSelectio
 export function DefaultHeader() {
   const [isSelectingLocation, setIsSelectingLocation] =useState(false);
   const { location } = useContext(LocationContext)
+  const { numberOfItemsInCart } = useContext(ShoppingCartContext)
 
   return (
     <DefaultHeaderContainer>
@@ -51,10 +53,10 @@ export function DefaultHeader() {
           <CartWrapper 
             onFocus={() => setIsSelectingLocation(false)}
           >
+            <span>{numberOfItemsInCart}</span>
             <ShoppingCart 
               size={22} 
               weight="fill" 
-              
             />
           </CartWrapper>
         </HeaderNavigation>

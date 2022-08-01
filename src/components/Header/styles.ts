@@ -73,6 +73,8 @@ export const LocationSelector = styled.button`
 `
 
 export const CartWrapper = styled.button`
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +86,28 @@ export const CartWrapper = styled.button`
   height: 38px;
 
   border-radius: 6px;
+
+  span{
+    position: absolute;
+
+    top: -8px;
+    right: -8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 20px;
+    width: 20px;
+
+    background-color: ${props => props.theme["product-colors"]["yellow-dark"]};
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: ${props => props.theme["base-colors"]["white"]};
+
+    border-radius: 50%;
+  }
 
   &:focus-visible, :hover{
     outline: 2px solid black;
