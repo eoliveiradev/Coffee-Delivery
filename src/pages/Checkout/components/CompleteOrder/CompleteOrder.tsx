@@ -17,7 +17,6 @@ export function CompleteOrder() {
       <FormSection>
 
         <AdressFormContainer>
-          <div className="adressForm-wrapper baseForm-wrapper">
             <header>
               <div className="icon-frame">
                 <MapPinLine
@@ -33,12 +32,9 @@ export function CompleteOrder() {
             <form>
 
             </form>
-          </div>
-
         </AdressFormContainer>
 
         <ChoosePaymentMethodContainer>
-          <div className="choosePaymentMethod-wrapper baseForm-wrapper">
             <header>
               <div className="icon-frame">
                 <CurrencyDollar
@@ -54,7 +50,6 @@ export function CompleteOrder() {
             <div className="paymentMethods-wrapper">
 
             </div>
-          </div>
         </ChoosePaymentMethodContainer>
 
       </FormSection>
