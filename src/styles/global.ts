@@ -8,6 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
     text-decoration: none;
     list-style-type: none;
+
+    font-family: ${props => props.theme["fonts"]["primary-text"]};
   }
   body{
     background-color: ${props => props.theme["base-colors"].background};

@@ -28,7 +28,19 @@ export const InnerHeader = styled.div`
   max-width: 1120px;
   height: 100%;
 
-  
+  a{
+    border-radius: 6px;
+    &:focus-visible{
+      outline: 2px solid black;
+      outline-offset: 2px;
+    }
+  }
+
+  #logo__link{
+    &:focus-visible{
+      outline-offset: 6px;
+    }
+  }
 `
 
 export const HeaderNavigation = styled.nav`
@@ -107,10 +119,5 @@ export const CartWrapper = styled.button`
     color: ${props => props.theme["base-colors"]["white"]};
 
     border-radius: 50%;
-  }
-
-  &:focus-visible, :hover{
-    outline: 2px solid black;
-    outline-offset: 2px;
   }
 `

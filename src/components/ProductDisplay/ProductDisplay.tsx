@@ -30,6 +30,8 @@ export function ProductDisplay(props : productDisplayProps) {
   } = useContext(ShoppingCartContext)
 
   function handleAddToCart(){
+    if(amountOfProducts === 0) return
+    
     const ItemAlreadyInCart = shoppingCart.find(item => item.id === props.product.id)
 
     if(ItemAlreadyInCart){
@@ -76,7 +78,6 @@ export function ProductDisplay(props : productDisplayProps) {
               setCounter = {setAmountOfProducts}
             />
             <AddToCartButton
-              disabled={amountOfProducts === 0}
               onClick={() => handleAddToCart()}
             >
               <ShoppingCart

@@ -26,7 +26,7 @@ export const CounterContainer = styled.div`
 
     transition: all 0.2s;
 
-    &:hover{
+    &:hover,:focus-visible{
       color: ${props => props.theme["product-colors"]["purple-dark"]};
     }
 

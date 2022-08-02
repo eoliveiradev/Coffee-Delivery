@@ -6,6 +6,7 @@ import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
 import { LocationContext } from "../../layouts/DefaultLayout";
 import { ShoppingCartContext } from "../../App";
+import { Link } from "react-router-dom";
 
 interface LocationSelectionMenuContextType{
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,8 +22,13 @@ export function DefaultHeader() {
   return (
     <DefaultHeaderContainer>
       <InnerHeader>   
-
-        <img src={logo}></img>
+        <Link 
+          to={"/"}
+          id="logo__link"
+        >
+          <img src={logo}></img>
+        </Link>
+        
 
         <HeaderNavigation
           onMouseLeave={() => setIsSelectingLocation(false)}
@@ -50,15 +56,18 @@ export function DefaultHeader() {
             )}
           </LocationSelectionMenuContext.Provider>
 
-          <CartWrapper 
-            onFocus={() => setIsSelectingLocation(false)}
-          >
-            <span>{numberOfItemsInCart}</span>
-            <ShoppingCart 
-              size={22} 
-              weight="fill" 
-            />
-          </CartWrapper>
+          <Link to={"/checkout"}>
+            <CartWrapper 
+              onFocus={() => setIsSelectingLocation(false)}
+            >
+              <span>{numberOfItemsInCart}</span>
+              <ShoppingCart 
+                size={22} 
+                weight="fill" 
+              />
+            </CartWrapper>
+          </Link>
+
         </HeaderNavigation>
       </InnerHeader>
     </ DefaultHeaderContainer>
