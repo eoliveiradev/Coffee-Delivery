@@ -1,4 +1,5 @@
-import { CurrencyDollar, MapPinLine } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "phosphor-react";
+import { useState } from "react";
 import { useForm, SubmitHandler, appendErrors } from "react-hook-form";
 import {
   AdressFormContainer,
@@ -9,6 +10,8 @@ import {
 
 
 export function CompleteOrder() {
+  const [paymentMethod, setPaymentMethod] = useState("creditCard")
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm<any>({
     defaultValues: {
       cep: "",
@@ -90,7 +93,7 @@ export function CompleteOrder() {
               <input
                 id="complemento"
                 type="text"
-                placeholder="Complemento"
+                placeholder="Complemento (opcional)"
                 {...register("complemento")}
               />
             </div>
@@ -115,7 +118,7 @@ export function CompleteOrder() {
                 {...register("uf")}
               />
             </div>
-            <button type="submit">submit</button>
+            <button type="submit">Submit Debug</button>
           </form>
         </AdressFormContainer>
 
@@ -133,14 +136,48 @@ export function CompleteOrder() {
             </div>
           </header>
           <div className="paymentMethods-wrapper">
-            <input id="credit-card" type="radio" name="paymentMethod" />
-            <label htmlFor="credit-card">Cartão de crédito</label>
+            <input 
+              id="credit-card" 
+              value="creditCard"
+              type="radio" 
+              name="paymentMethod" 
+              checked={paymentMethod === "creditCard"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label htmlFor="credit-card">
+              <span>
+                <CreditCard size={24} />
+              </span>
+              CARTÃO DE CRÉDITO
+            </label>
 
-            <input id="debit-card" type="radio" name="paymentMethod" />
-            <label htmlFor="debit-card">Debit</label>
+            <input
+              id="debit-card" 
+              value="debitCard"
+              type="radio" 
+              name="paymentMethod" 
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label htmlFor="debit-card">
+              <span>
+                <Bank size={24} />
+              </span>
+              CARTÃO DE DÉBITO
+            </label>
 
-            <input id="cash" type="radio" name="paymentMethod" />
-            <label htmlFor="cash">Cash</label>
+            <input 
+              id="cash" 
+              value="cash"
+              type="radio" 
+              name="paymentMethod" 
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label htmlFor="cash">
+              <span>
+                <Money size={24} />
+              </span>
+              DINHEIRO
+            </label>
           </div>
         </ChoosePaymentMethodContainer>
 

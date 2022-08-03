@@ -175,17 +175,34 @@ export const ChoosePaymentMethodContainer = styled(BaseFormContainer)`
     input{
       display: none;
     }
+
+    input:checked + label{
+      border: 1px solid ${props => props.theme["product-colors"]["purple"]};
+      background-color: ${props => props.theme["product-colors"]["purple-light"]};
+    }
     label{
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 12px;
 
       width: 178px;
       height: 51px;
 
+      border: 1px solid transparent;
+      border-radius: 6px;
+
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: ${props => props.theme["base-colors"]["base-text"]};
+
       background-color: ${props => props.theme["base-colors"]["base-button"]};
 
       cursor: pointer;
+
+      span{
+        color: ${props => props.theme["product-colors"]["purple"]};
+      }
     }
   }
   
