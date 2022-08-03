@@ -3,23 +3,22 @@ import styled from "styled-components"
 export const CompletOrderContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 15px;
 
   width: 100%;
   max-width: 640px;
-  min-height: 630px;
-
-  //background-color: ${props => props.theme["base-colors"]["base-card"]};
 `
 
 export const FormSection = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  
   width: 100%;
-  min-height: 592px;
 `
 
 export const BaseFormContainer = styled.div`
@@ -31,6 +30,14 @@ export const BaseFormContainer = styled.div`
   max-width: 560px;
 
   padding: 40px;
+
+  @media(max-width: 1200px){
+    padding: 2vw;
+  }
+
+  background-color: lightPink;
+  border-radius: 6px;
+  background-color: ${props => props.theme["base-colors"]["base-card"]};
 
   header{
     display: flex;
@@ -65,18 +72,92 @@ export const BaseFormContainer = styled.div`
     }
   }
 
-  border-radius: 6px;
-
-  background-color: ${props => props.theme["base-colors"]["base-card"]};
-
 `
 
 export const AdressFormContainer = styled(BaseFormContainer)`
   min-height: 292px;
 
   form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     width: 100%;
     min-height: 216px;
+
+    label{
+      position: relative;
+
+      .invalid__input-message{
+        position: absolute;
+
+        display: flex;
+        align-items: center;
+
+        min-height: 32px;
+
+        padding: 0 8px;
+        border-radius: 4px;
+
+        font-size: 0.8rem;
+        color: white;
+        background-color: #a6312b;
+        opacity: 0.9;
+      }
+    }
+
+    input{
+      height: 42px;
+
+      text-indent: 10px;
+
+      border-radius: 4px;
+
+      background-color: ${props => props.theme["base-colors"]["base-input"]};
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    #cep{
+      width: 200px;
+    }
+
+    #rua{
+      width: 100%;
+    }
+
+    #numero{
+      width: 200px;
+    }
+
+    #complemento{
+      flex: 1;
+    }
+
+    #bairro{
+      width: 200px;
+    }
+
+    #cidade{
+      flex: 1;
+    }
+
+    #uf{
+      width: 60px;
+    }
+
+    .flex{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    width: 100%;
+  }
   }
 `
 
@@ -85,11 +166,27 @@ export const ChoosePaymentMethodContainer = styled(BaseFormContainer)`
 
   .paymentMethods-wrapper{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     width: 100%;
     min-height: 51px;
+
+    input{
+      display: none;
+    }
+    label{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 178px;
+      height: 51px;
+
+      background-color: ${props => props.theme["base-colors"]["base-button"]};
+
+      cursor: pointer;
+    }
   }
   
 `
