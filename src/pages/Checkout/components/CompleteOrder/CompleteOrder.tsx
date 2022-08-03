@@ -39,7 +39,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
         console.log(error)
         setIsCepInvalid(true)
       })
-    }else if(cep.length > 8){
+    }else{
       setIsCepInvalid(true)
     }
   }
@@ -79,9 +79,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
                   cep = e.target.value;
                   handleCepChange()
                 }}
-                autoFocus
               />
-              {(errors.cep || isCepInvalid) && 
+              {isCepInvalid && 
                 <div 
                   className="invalid__input-message"
                 >
