@@ -1,33 +1,24 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "phosphor-react";
-import { useState } from "react";
-import { useForm, SubmitHandler, appendErrors } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, SubmitHandler, appendErrors, useFormContext } from "react-hook-form";
 import {
-  AdressFormContainer,
+  AddressFormContainer,
   ChoosePaymentMethodContainer,
-  CompletOrderContainer,
+  CompleteOrderContainer,
   FormSection
 } from "./styles";
 
+interface CompleteOrderProps {
+  paymentMethod: string;
+  setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export function CompleteOrder() {
-  const [paymentMethod, setPaymentMethod] = useState("creditCard")
+export function CompleteOrder(props: CompleteOrderProps) {
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<any>({
-    defaultValues: {
-      cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      bairro: "",
-      cidade: "",
-      uf: "",
-    }
-  });
-
-  const onSubmit: SubmitHandler<any> = data => alert(JSON.stringify(data))
+  const {register, handleSubmit, watch, formState: { errors }} = useFormContext()
 
   return (
-    <CompletOrderContainer>
+    <CompleteOrderContainer>
       <h1
         className="checkout-title"
       >
@@ -35,7 +26,7 @@ export function CompleteOrder() {
       </h1>
       <FormSection>
 
-        <AdressFormContainer>
+        <AddressFormContainer>
           <header>
             <div className="icon-frame">
               <MapPinLine
@@ -49,7 +40,7 @@ export function CompleteOrder() {
             </div>
           </header>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form__wrapper">
 
             <label>
               <input
@@ -119,8 +110,8 @@ export function CompleteOrder() {
               />
             </div>
             <button type="submit">Submit Debug</button>
-          </form>
-        </AdressFormContainer>
+          </div>
+        </AddressFormContainer>
 
         <ChoosePaymentMethodContainer>
           <header>
@@ -141,8 +132,8 @@ export function CompleteOrder() {
               value="creditCard"
               type="radio" 
               name="paymentMethod" 
-              checked={paymentMethod === "creditCard"}
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              checked={props.paymentMethod === "creditCard"}
+              onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
             <label htmlFor="credit-card">
               <span>
@@ -156,7 +147,7 @@ export function CompleteOrder() {
               value="debitCard"
               type="radio" 
               name="paymentMethod" 
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
             <label htmlFor="debit-card">
               <span>
@@ -170,7 +161,7 @@ export function CompleteOrder() {
               value="cash"
               type="radio" 
               name="paymentMethod" 
-              onChange={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
             <label htmlFor="cash">
               <span>
@@ -182,6 +173,6 @@ export function CompleteOrder() {
         </ChoosePaymentMethodContainer>
 
       </FormSection>
-    </CompletOrderContainer>
+    </CompleteOrderContainer>
   )
 }

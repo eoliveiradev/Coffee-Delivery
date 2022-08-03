@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const CompletOrderContainer = styled.section`
+export const CompleteOrderContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,10 +74,10 @@ export const BaseFormContainer = styled.div`
 
 `
 
-export const AdressFormContainer = styled(BaseFormContainer)`
+export const AddressFormContainer = styled(BaseFormContainer)`
   min-height: 292px;
 
-  form{
+  .form__wrapper{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -151,13 +151,13 @@ export const AdressFormContainer = styled(BaseFormContainer)`
     }
 
     .flex{
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
 
-    width: 100%;
-  }
+      width: 100%;
+    }
   }
 `
 
