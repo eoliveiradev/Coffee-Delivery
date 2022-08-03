@@ -1,5 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "phosphor-react";
 import React, { useState } from "react";
+import axios from "axios"
 import { useForm, SubmitHandler, appendErrors, useFormContext } from "react-hook-form";
 import {
   AddressFormContainer,
@@ -13,9 +14,37 @@ interface CompleteOrderProps {
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
+//https://brasilapi.com.br/api/cep/v2/{cep}
+
 export function CompleteOrder(props: CompleteOrderProps) {
 
   const {register, handleSubmit, watch, formState: { errors }} = useFormContext()
+  const [isCepInvalid, setIsCepInvalid] = useState(false)
+  const [wasCepFound, setWasCepFound] = useState(false)
+  const [cepData, setCepData] = useState<any>({})
+
+  let cep : string
+  function handleCepChange(){
+    const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}` 
+
+    console.log(cep)
+    if(cep.length == 8){
+      axios.get(CEP_API_URL)
+      .then(response => {
+        console.log(response.data)
+        setCepData(response.data)
+        setWasCepFound(true)
+        setIsCepInvalid(false)
+      })
+      .catch(error => {
+        console.log(error)
+        setIsCepInvalid(true)
+      })
+    }else if(cep.length > 8){
+      setIsCepInvalid(true)
+    }
+  }
 
   return (
     <CompleteOrderContainer>
@@ -46,10 +75,15 @@ export function CompleteOrder(props: CompleteOrderProps) {
               <input
                 id="cep"
                 type="number"
-                placeholder="CEP"
-                {...register("cep", { required: true, minLength: 8})}
+                placeholder="CEP            (apenas números)"
+                {...register("cep", { required: true, minLength: 8, maxLength: 8})}
+                onChange={(e) => {
+                  cep = e.target.value;
+                  handleCepChange()
+                }}
+                autoFocus
               />
-              {errors.cep && 
+              {(errors.cep || isCepInvalid) && 
                 <div 
                   className="invalid__input-message"
                 >
@@ -62,6 +96,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
               id="rua"
               type="text"
               placeholder="Rua"
+              value={wasCepFound ? cepData.street : null}
+              
               {...register("rua")}
             />
 
@@ -94,18 +130,21 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 id="bairro"
                 type="text"
                 placeholder="Bairro"
+                value={wasCepFound ? cepData.neighborhood : null}
                 {...register("bairro")}
               />
               <input
                 id="cidade"
                 type="text"
                 placeholder="Cidade"
+                value={wasCepFound ? cepData.city : null}
                 {...register("cidade")}
               />
               <input
                 id="uf"
                 type="text"
                 placeholder="UF"
+                value={wasCepFound ? cepData.state : null}
                 {...register("uf")}
               />
             </div>

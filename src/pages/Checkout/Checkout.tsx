@@ -24,24 +24,27 @@ export function Checkout() {
   const { register, handleSubmit, watch, formState: { errors } } = addressForm;
 
   function onSubmit(data: any) {
+    console.log("submit")
     alert(JSON.stringify(data))
   }
 
   return (
-
     <CheckoutContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="wrapper">
-          <FormProvider {...addressForm}>
+
+      <div className="wrapper">
+
+        <FormProvider {...addressForm}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <CompleteOrder
               paymentMethod={paymentMethod}
               setPaymentMethod={setPaymentMethod}
             />
-          </FormProvider>
-          <ConfirmOrder />
-        </div>
-      </form>
-    </ CheckoutContainer>
+          </form>
+        </FormProvider>
+        <ConfirmOrder />
 
+      </div>
+
+    </ CheckoutContainer>
   )
 }

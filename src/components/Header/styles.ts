@@ -120,4 +120,9 @@ export const CartWrapper = styled.div`
 
     border-radius: 50%;
   }
+
+  &:focus-visible, :hover{
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
 `

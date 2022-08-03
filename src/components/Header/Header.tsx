@@ -56,10 +56,11 @@ export function DefaultHeader() {
             )}
           </LocationSelectionMenuContext.Provider>
 
-          <Link to={"/checkout"}>
-            <CartWrapper 
-              onFocus={() => setIsSelectingLocation(false)}
-            >
+          <Link 
+            to={"/checkout"}
+            onFocus={() => setIsSelectingLocation(false)}
+          >
+            <CartWrapper>
               <span>{numberOfItemsInCart}</span>
               <ShoppingCart 
                 size={22} 

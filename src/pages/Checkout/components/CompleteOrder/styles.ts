@@ -32,7 +32,7 @@ export const BaseFormContainer = styled.div`
   padding: 40px;
 
   @media(max-width: 1200px){
-    padding: 2vw;
+    padding: 6vw 2vw;
   }
 
   background-color: lightPink;
@@ -80,10 +80,12 @@ export const AddressFormContainer = styled(BaseFormContainer)`
   .form__wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 12px;
 
     width: 100%;
     min-height: 216px;
+
+    margin-top: 12px;
 
     label{
       position: relative;
@@ -102,7 +104,9 @@ export const AddressFormContainer = styled(BaseFormContainer)`
         font-size: 0.8rem;
         color: white;
         background-color: #a6312b;
-        opacity: 0.9;
+        opacity: 1;
+
+        z-index: 999;
       }
     }
 
@@ -111,9 +115,19 @@ export const AddressFormContainer = styled(BaseFormContainer)`
 
       text-indent: 10px;
 
+      border: 1px solid ${props => props.theme["base-colors"]["base-button"]};
       border-radius: 4px;
 
       background-color: ${props => props.theme["base-colors"]["base-input"]};
+
+      ::placeholder {
+        color: ${props => props.theme["base-colors"]["base-label"]};
+        font-size: 0.875rem;
+      }
+
+      &:focus{
+        border: 1px solid ${props => props.theme["product-colors"]["yellow-dark"]};
+      }
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
@@ -173,13 +187,22 @@ export const ChoosePaymentMethodContainer = styled(BaseFormContainer)`
     min-height: 51px;
 
     input{
-      display: none;
+      display: hidden;
+      width: 0px;
+      height: 0px;
     }
 
     input:checked + label{
       border: 1px solid ${props => props.theme["product-colors"]["purple"]};
       background-color: ${props => props.theme["product-colors"]["purple-light"]};
     }
+
+    input[type=radio]:focus-visible + label{
+      outline: 2px solid black;
+      outline-offset: 2px;
+      border: 1px solid transparent;
+    }
+
     label{
       display: flex;
       justify-content: center;
