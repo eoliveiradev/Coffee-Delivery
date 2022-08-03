@@ -84,7 +84,7 @@ export const LocationSelector = styled.button`
   }
 `
 
-export const CartWrapper = styled.button`
+export const CartWrapper = styled.div`
   position: relative;
 
   display: flex;

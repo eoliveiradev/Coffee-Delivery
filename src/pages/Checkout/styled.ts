@@ -12,6 +12,10 @@ export const CheckoutContainer = styled.main`
     font-family: ${props => props.theme["fonts"]["header"]};
   }
 
+  form{
+    width: 100%;
+  }
+
   .wrapper{
     display: flex;
     justify-content: center;

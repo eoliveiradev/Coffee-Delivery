@@ -28,19 +28,20 @@ export function Checkout() {
   }
 
   return (
+
     <CheckoutContainer>
-      <div className="wrapper">
-        <FormProvider {...addressForm}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="wrapper">
+          <FormProvider {...addressForm}>
             <CompleteOrder
               paymentMethod={paymentMethod}
               setPaymentMethod={setPaymentMethod}
             />
-          </form>
-        </FormProvider>
-
-        <ConfirmOrder />
-      </div>
+          </FormProvider>
+          <ConfirmOrder />
+        </div>
+      </form>
     </ CheckoutContainer>
+
   )
 }
