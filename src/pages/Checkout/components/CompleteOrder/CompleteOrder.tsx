@@ -44,8 +44,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
         .then(response => {
           let cepData: CepDataType = response.data
 
-          console.log(response.data)
-
           setValue("rua", cepData.street);
           setValue("bairro", cepData.neighborhood);
           setValue("cidade", cepData.city);

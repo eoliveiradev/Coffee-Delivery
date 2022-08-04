@@ -199,6 +199,7 @@ export const ChoosePaymentMethodContainer = styled(BaseFormContainer)`
     min-height: 51px;
 
     input{
+      position: absolute;
       display: hidden;
       width: 0px;
       height: 0px;
@@ -234,6 +235,12 @@ export const ChoosePaymentMethodContainer = styled(BaseFormContainer)`
       background-color: ${props => props.theme["base-colors"]["base-button"]};
 
       cursor: pointer;
+
+      @media(max-width: 768px){
+        font-size: 0.65rem;
+        width: 28vw;
+        max-width: 178px;
+      }
 
       span{
         color: ${props => props.theme["product-colors"]["purple"]};
