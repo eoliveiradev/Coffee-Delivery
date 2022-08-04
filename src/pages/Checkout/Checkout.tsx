@@ -8,6 +8,7 @@ import {
 
 export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("creditCard")
+  const [isCepInvalid, setIsCepInvalid] = useState(true)
 
   const addressForm = useForm<any>({
     defaultValues: {
@@ -38,6 +39,8 @@ export function Checkout() {
             <CompleteOrder
               paymentMethod={paymentMethod}
               setPaymentMethod={setPaymentMethod}
+              isCepInvalid={isCepInvalid}
+              setIsCepInvalid={setIsCepInvalid}
             />
 
           </FormProvider>

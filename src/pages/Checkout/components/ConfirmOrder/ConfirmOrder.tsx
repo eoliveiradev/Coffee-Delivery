@@ -10,7 +10,7 @@ export function ConfirmOrder() {
         Confirme seu pedido
       </h1>
       <ConfirmOrderWrapper>
-        
+        <button type="submit">Submit debug</button>
         
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>

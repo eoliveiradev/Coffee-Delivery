@@ -12,6 +12,8 @@ import {
 interface CompleteOrderProps {
   paymentMethod: string;
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
+  isCepInvalid: boolean;
+  setIsCepInvalid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface CepDataType{
@@ -31,12 +33,12 @@ interface CepDataType{
 }
 
 export function CompleteOrder(props: CompleteOrderProps) {
-
   const { register, setValue, formState: { errors } } = useFormContext()
-  const [isCepInvalid, setIsCepInvalid] = useState(false)
+  const [cepLenght, setCepLenght] = useState(0);
 
-  let cep: string
+  let cep: string = ""
   function handleCepChange() {
+    setCepLenght(cep.length)
     const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}`
 
     if (cep.length == 8) {
@@ -49,14 +51,14 @@ export function CompleteOrder(props: CompleteOrderProps) {
           setValue("cidade", cepData.city);
           setValue("uf", cepData.state);
 
-          setIsCepInvalid(false)
+          props.setIsCepInvalid(false)
         })
         .catch(error => {
           console.log(error)
-          setIsCepInvalid(true)
+          props.setIsCepInvalid(true)
         })
     }else {
-      setIsCepInvalid(true)
+      props.setIsCepInvalid(true)
     }
   }
 
@@ -84,7 +86,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
           </header>
 
           <div className="form__wrapper">
-
             <label>
               <input
                 id="cep"
@@ -96,7 +97,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                   handleCepChange()
                 }}
               />
-              {isCepInvalid &&
+              {(props.isCepInvalid && cepLenght > 0) &&
                 <>
                   <p>*Apenas números</p>
                   <div
@@ -113,7 +114,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
               id="rua"
               type="text"
               placeholder="Rua"
-              {...register("rua")}
+              disabled={!props.isCepInvalid}
+              {...register("rua", { required: true })}
             />
 
             <div className="flex">
@@ -145,19 +147,22 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 id="bairro"
                 type="text"
                 placeholder="Bairro"
-                {...register("bairro")}
+                disabled={!props.isCepInvalid}
+                {...register("bairro", { required: true })}
               />
               <input
                 id="cidade"
                 type="text"
                 placeholder="Cidade"
-                {...register("cidade")}
+                disabled={!props.isCepInvalid}
+                {...register("cidade", { required: true })}
               />
               <input
                 id="uf"
                 type="text"
                 placeholder="UF"
-                {...register("uf")}
+                disabled={!props.isCepInvalid}
+                {...register("uf", { required: true })}
               />
             </div>
           </div>
@@ -221,7 +226,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
             </label>
           </div>
         </ChoosePaymentMethodContainer>
-
       </FormSection>
     </CompleteOrderContainer>
   )

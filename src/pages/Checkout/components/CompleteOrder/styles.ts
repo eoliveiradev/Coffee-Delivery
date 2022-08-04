@@ -137,6 +137,10 @@ export const AddressFormContainer = styled(BaseFormContainer)`
         font-size: 0.875rem;
       }
 
+      &:disabled{
+        background-color: ${props => props.theme["base-colors"]["base-input-disabled"]};
+      }
+
       &:focus{
         border: 1px solid ${props => props.theme["product-colors"]["yellow-dark"]};
       }
