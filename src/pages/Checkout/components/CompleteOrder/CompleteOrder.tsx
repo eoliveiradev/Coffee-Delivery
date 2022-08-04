@@ -114,7 +114,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
               id="rua"
               type="text"
               placeholder="Rua"
-              disabled={!props.isCepInvalid}
               {...register("rua", { required: true })}
             />
 
@@ -147,7 +146,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 id="bairro"
                 type="text"
                 placeholder="Bairro"
-                disabled={!props.isCepInvalid}
                 {...register("bairro", { required: true })}
               />
               <input
