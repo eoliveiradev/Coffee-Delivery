@@ -1,7 +1,7 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "phosphor-react";
 import React, { useState } from "react";
 import axios from "axios"
-import { useForm, SubmitHandler, appendErrors, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import {
   AddressFormContainer,
   ChoosePaymentMethodContainer,
@@ -14,32 +14,50 @@ interface CompleteOrderProps {
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
 }
 
+interface CepDataType{
+  cep: string;
+  city: string;
+  location: {
+    coordinates: {
+      latitude: string;
+      longitude: string;
+    }
+    type: string;
+  }
+  neighborhood: string;
+  service: string;
+  state: string;
+  street: string;
+}
+
 export function CompleteOrder(props: CompleteOrderProps) {
 
-  const {register, setValue, formState: { errors }} = useFormContext()
+  const { register, setValue, formState: { errors } } = useFormContext()
   const [isCepInvalid, setIsCepInvalid] = useState(false)
 
-  let cep : string
-  function handleCepChange(){
-    const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}` 
+  let cep: string
+  function handleCepChange() {
+    const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}`
 
-    if(cep.length == 8){
+    if (cep.length == 8) {
       axios.get(CEP_API_URL)
-      .then(response => {
-        let cepData : any = response.data
+        .then(response => {
+          let cepData: CepDataType = response.data
 
-        setValue("rua", cepData.street);
-        setValue("bairro", cepData.neighborhood);
-        setValue("cidade", cepData.city);
-        setValue("uf", cepData.state);
+          console.log(response.data)
 
-        setIsCepInvalid(false)
-      })
-      .catch(error => {
-        console.log(error)
-        setIsCepInvalid(true)
-      })
-    }else{
+          setValue("rua", cepData.street);
+          setValue("bairro", cepData.neighborhood);
+          setValue("cidade", cepData.city);
+          setValue("uf", cepData.state);
+
+          setIsCepInvalid(false)
+        })
+        .catch(error => {
+          console.log(error)
+          setIsCepInvalid(true)
+        })
+    }else {
       setIsCepInvalid(true)
     }
   }
@@ -73,19 +91,23 @@ export function CompleteOrder(props: CompleteOrderProps) {
               <input
                 id="cep"
                 type="number"
-                placeholder="CEP            (apenas números)"
-                {...register("cep", { required: true, minLength: 8, maxLength: 8})}
+                placeholder="CEP (apenas números)"
+                {...register("cep", { required: true, minLength: 8, maxLength: 8 })}
                 onChange={(e) => {
                   cep = e.target.value;
                   handleCepChange()
                 }}
               />
-              {isCepInvalid && 
-                <div 
-                  className="invalid__input-message"
-                >
-                  Cep inválido
-                </div>
+              {isCepInvalid &&
+                <>
+                  <p>*Apenas números</p>
+                  <div
+                    className="invalid__input-message"
+                  >
+                    Cep inválido
+                  </div>
+                </>
+
               }
             </label>
 
@@ -104,8 +126,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
                   placeholder="Número"
                   {...register("numero", { required: true })}
                 />
-                {errors.numero && 
-                  <div 
+                {errors.numero &&
+                  <div
                     className="invalid__input-message"
                   >
                     Número Inválido
@@ -140,7 +162,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 {...register("uf")}
               />
             </div>
-            <button type="submit">Submit Debug</button>
           </div>
         </AddressFormContainer>
 
@@ -158,11 +179,11 @@ export function CompleteOrder(props: CompleteOrderProps) {
             </div>
           </header>
           <div className="paymentMethods-wrapper">
-            <input 
-              id="credit-card" 
+            <input
+              id="credit-card"
               value="creditCard"
-              type="radio" 
-              name="paymentMethod" 
+              type="radio"
+              name="paymentMethod"
               checked={props.paymentMethod === "creditCard"}
               onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
@@ -174,10 +195,10 @@ export function CompleteOrder(props: CompleteOrderProps) {
             </label>
 
             <input
-              id="debit-card" 
+              id="debit-card"
               value="debitCard"
-              type="radio" 
-              name="paymentMethod" 
+              type="radio"
+              name="paymentMethod"
               onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
             <label htmlFor="debit-card">
@@ -187,11 +208,11 @@ export function CompleteOrder(props: CompleteOrderProps) {
               CARTÃO DE DÉBITO
             </label>
 
-            <input 
-              id="cash" 
+            <input
+              id="cash"
               value="cash"
-              type="radio" 
-              name="paymentMethod" 
+              type="radio"
+              name="paymentMethod"
               onChange={(e) => props.setPaymentMethod(e.target.value)}
             />
             <label htmlFor="cash">

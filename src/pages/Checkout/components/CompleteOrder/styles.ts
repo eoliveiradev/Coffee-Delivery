@@ -75,6 +75,8 @@ export const BaseFormContainer = styled.div`
 `
 
 export const AddressFormContainer = styled(BaseFormContainer)`
+  gap: 32px;
+
   min-height: 292px;
 
   .form__wrapper{
@@ -84,14 +86,22 @@ export const AddressFormContainer = styled(BaseFormContainer)`
 
     width: 100%;
     min-height: 216px;
-
-    margin-top: 12px;
-
+    
     label{
       position: relative;
 
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      p{
+        font-size: 0.8rem;
+        color: ${props => props.theme["base-colors"]["base-text"]};
+      }
+
       .invalid__input-message{
         position: absolute;
+        bottom: -34px;
 
         display: flex;
         align-items: center;
@@ -104,11 +114,13 @@ export const AddressFormContainer = styled(BaseFormContainer)`
         font-size: 0.8rem;
         color: white;
         background-color: #a6312b;
-        opacity: 1;
+        opacity: 0.95;
 
         z-index: 999;
       }
     }
+
+
 
     input{
       height: 42px;
