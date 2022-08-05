@@ -11,6 +11,10 @@ export const ConfirmOrderContainer = styled.section`
 `
 
 export const ConfirmOrderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
   height: 498px;
 
