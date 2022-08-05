@@ -19,18 +19,17 @@ export function Counter(props: CounterProps){
     else if(method === "add"){
       props.setCounter(props.counter + 1);
     }
+
+    if(props.handleCounterChange){
+      props.handleCounterChange()
+    }
   }
 
   return(
     <CounterContainer>
       <button
         type="button" 
-        onClick={() => {
-          handleCounter("remove");
-          if(props.handleCounterChange){
-            props.handleCounterChange()
-          }
-        }}
+        onClick={() => {handleCounter("remove")}}
       >
         -
       </button>
@@ -39,12 +38,7 @@ export function Counter(props: CounterProps){
         </span>
       <button 
         type="button" 
-        onClick={() => {
-          handleCounter("add");
-          if(props.handleCounterChange){
-            props.handleCounterChange()
-          }
-        }}
+        onClick={() => {handleCounter("add")}}
       >
         +
       </button>
