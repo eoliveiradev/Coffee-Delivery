@@ -16,9 +16,16 @@ export function ConfirmOrder() {
       </h1>
       <ConfirmOrderWrapper>
         <button type="submit">Submit debug</button>
-          {shoppingCart.map(item => (
-            <CartItemDisplay ProductsData={MenuItems} productId={item.id} amountOfProducts={item.quantity} />   
-          ))}
+          {shoppingCart.map((item,index) => {
+            if(item.quantity > 0){
+              return(
+                <CartItemDisplay 
+                  key={index} 
+                  ProductsData={MenuItems} 
+                  productId={item.id} 
+                  amountOfProducts={item.quantity} 
+                /> 
+              )}})}
           <button onClick={() => alert(JSON.stringify(shoppingCart))}>Shopping cart</button>
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>
