@@ -22,7 +22,8 @@ export function Counter(props: CounterProps){
 
   return(
     <CounterContainer>
-      <button 
+      <button
+        type="button" 
         onClick={() => handleCounter("remove")}
       >
         -
@@ -31,6 +32,7 @@ export function Counter(props: CounterProps){
           {props.counter}
         </span>
       <button 
+        type="button" 
         onClick={() => handleCounter("add")}
       >
         +
