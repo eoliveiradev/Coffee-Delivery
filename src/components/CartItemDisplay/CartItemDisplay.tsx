@@ -1,11 +1,11 @@
 import { CartItemDisplayContainer, CartItemInfo, CartItemWrapper, EditCartItem, RemoveCartItem } from "./styles";
-import { MenuItems } from "../../data/Menu/MenuItems"
-import { useContext, useEffect, useRef, useState } from "react";
+import { coffeItemType } from "../../data/Menu/MenuItems"
+import { useContext, useEffect,  useState } from "react";
 import { Counter } from "../Counter/Counter";
 import { ShoppingCartContext } from "../../App";
 
 interface CartItemDisplayProps {
-  ProductsData: any[];
+  productsData: coffeItemType[];
   productId: number;
   amountOfProducts: number;
 }
@@ -16,6 +16,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   const [wasItemDeleted, setWasItemDeleted] = useState(false)
 
   let itemIndex = shoppingCart.findIndex(item => item.id === props.productId);
+  let itemIndexInProductsData = props.productsData.findIndex(item => item.id === props.productId);
   let newShoppingCart = [...shoppingCart]
 
   useEffect(() => {
@@ -39,9 +40,9 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
       {!wasItemDeleted && (
         <CartItemDisplayContainer>
           <CartItemWrapper>
-            <img src={MenuItems[itemIndex].image} />
+            <img src={props.productsData[itemIndexInProductsData].image} />
             <CartItemInfo>
-              <h1>{MenuItems[itemIndex].name}</h1>
+              <h1>{props.productsData[itemIndexInProductsData].name}</h1>
               <EditCartItem>
                 <Counter counter={counter} setCounter={setCounter}/>
                 <RemoveCartItem

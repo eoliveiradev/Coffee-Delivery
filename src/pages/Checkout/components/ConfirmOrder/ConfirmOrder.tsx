@@ -21,7 +21,7 @@ export function ConfirmOrder() {
               return(
                 <CartItemDisplay 
                   key={index} 
-                  ProductsData={MenuItems} 
+                  productsData={MenuItems} 
                   productId={item.id} 
                   amountOfProducts={item.quantity} 
                 /> 
