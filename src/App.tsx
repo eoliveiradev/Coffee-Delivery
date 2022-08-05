@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Router } from './Router';
@@ -23,6 +23,12 @@ export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
 function App() {
   const [shoppingCart, setShoppingCart] = useState<ShoppingCartItem[]>([])
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState<number>(0)
+
+  let totalItemsInCart : number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.quantity), 0)
+
+  useEffect(() => {
+    setNumberOfItemsInCart(totalItemsInCart)
+  }, [shoppingCart])
 
   return (
     <ThemeProvider theme={defaultTheme}>
