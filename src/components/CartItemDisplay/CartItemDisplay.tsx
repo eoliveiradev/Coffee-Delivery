@@ -12,7 +12,7 @@ interface CartItemDisplayProps {
 
 export function CartItemDisplay(props: CartItemDisplayProps) {
   const [counter, setCounter] = useState(props.amountOfProducts)
-  const { shoppingCart, setShoppingCart, numberOfItemsInCart, setNumberOfitemsInCart } = useContext(ShoppingCartContext)
+  const { shoppingCart, setShoppingCart, numberOfItemsInCart} = useContext(ShoppingCartContext)
   const [wasItemDeleted, setWasItemDeleted] = useState(false)
 
   let itemIndex = shoppingCart.findIndex(item => item.id === props.productId);

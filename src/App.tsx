@@ -15,7 +15,6 @@ interface ShoppingCartContextType {
   shoppingCart: ShoppingCartItem[];
   setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCartItem[]>>;
   numberOfItemsInCart: number;
-  setNumberOfitemsInCart: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
@@ -37,7 +36,6 @@ function App() {
           shoppingCart: shoppingCart,
           setShoppingCart: setShoppingCart,
           numberOfItemsInCart: numberOfItemsInCart,
-          setNumberOfitemsInCart: setNumberOfItemsInCart
         }}
       >
         <BrowserRouter>

@@ -26,7 +26,6 @@ export function ProductDisplay(props : productDisplayProps) {
     shoppingCart, 
     setShoppingCart,
     numberOfItemsInCart, 
-    setNumberOfitemsInCart
   } = useContext(ShoppingCartContext)
 
   function handleAddToCart(){
@@ -42,7 +41,6 @@ export function ProductDisplay(props : productDisplayProps) {
         "quantity" : amountOfProducts
       }])
     }
-    setNumberOfitemsInCart(numberOfItemsInCart + amountOfProducts);
     setAmountOfProducts(0)
   }
 
