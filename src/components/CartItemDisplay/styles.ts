@@ -39,6 +39,16 @@ export const CartItemInfo = styled.div`
 `
 
 export const EditCartItem = styled.div`
+  display: flex;
+
   width: 172px;
   height: 32px;
+`
+
+export const RemoveCartItem = styled.button`
+  width: 92px;
+  height: 32px;
+
+  background-color: ${props => props.theme["base-colors"]["base-button"]};
+
 `

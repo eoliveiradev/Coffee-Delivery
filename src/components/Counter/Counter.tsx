@@ -4,7 +4,8 @@ import { CounterContainer } from "./styles"
 
 interface CounterProps{
   counter: number;
-  setCounter: React.Dispatch<React.SetStateAction<number>>
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+  handleCounterChange?: () => void;
 }
 
 export function Counter(props: CounterProps){
@@ -24,7 +25,12 @@ export function Counter(props: CounterProps){
     <CounterContainer>
       <button
         type="button" 
-        onClick={() => handleCounter("remove")}
+        onClick={() => {
+          handleCounter("remove");
+          if(props.handleCounterChange){
+            props.handleCounterChange()
+          }
+        }}
       >
         -
       </button>
@@ -33,7 +39,12 @@ export function Counter(props: CounterProps){
         </span>
       <button 
         type="button" 
-        onClick={() => handleCounter("add")}
+        onClick={() => {
+          handleCounter("add");
+          if(props.handleCounterChange){
+            props.handleCounterChange()
+          }
+        }}
       >
         +
       </button>
