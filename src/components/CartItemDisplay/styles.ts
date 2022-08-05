@@ -7,7 +7,7 @@ export const CartItemDisplayContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: 368px;
+  width: 100%;
   height: 80px;
 
   .price__container{
