@@ -16,13 +16,9 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   const [wasItemDeleted, setWasItemDeleted] = useState(false)
 
   let itemIndex = shoppingCart.findIndex(item => item.id === props.productId);
-  let newShoppingCart = shoppingCart
-
-  const initialAmountOfProducts = useRef(props.amountOfProducts)
-  const initialNumberOfItemsInCart = useRef(numberOfItemsInCart)
+  let newShoppingCart = [...shoppingCart]
 
   useEffect(() => {
-    setNumberOfitemsInCart(initialNumberOfItemsInCart.current - initialAmountOfProducts.current + counter)
     handleCounterChange()
   }, [counter])
 
@@ -32,7 +28,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   }
 
   function handleRemoveCartItem() {
-    newShoppingCart.splice(itemIndex, 1)
+    newShoppingCart[itemIndex].quantity = 0;
     setShoppingCart(newShoppingCart)
     setCounter(0)
     setWasItemDeleted(true);
@@ -43,7 +39,6 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
       {!wasItemDeleted && (
         <CartItemDisplayContainer>
           <CartItemWrapper>
-            {initialAmountOfProducts.current}
             <img src={MenuItems[props.productId].image} />
             <CartItemInfo>
               <h1>{MenuItems[props.productId].name}</h1>
