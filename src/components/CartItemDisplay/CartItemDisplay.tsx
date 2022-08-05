@@ -23,6 +23,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
 
   useEffect(() => {
     setNumberOfitemsInCart(initialNumberOfItemsInCart.current - initialAmountOfProducts.current + counter)
+    handleCounterChange()
   }, [counter])
 
   function handleCounterChange(){
@@ -47,7 +48,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
             <CartItemInfo>
               <h1>{MenuItems[props.productId].name}</h1>
               <EditCartItem>
-                <Counter counter={counter} setCounter={setCounter} handleCounterChange={handleCounterChange}/>
+                <Counter counter={counter} setCounter={setCounter}/>
                 <RemoveCartItem
                   type="button"
                   onClick={() => handleRemoveCartItem()}
