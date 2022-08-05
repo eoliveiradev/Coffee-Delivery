@@ -7,86 +7,77 @@ import { Counter } from "../Counter/Counter";
 import { ShoppingCartContext } from "../../App";
 
 type productType = coffeItemType
-interface productDisplayProps{
+interface productDisplayProps {
   product: productType;
 }
 
-interface amountOfProductsContextType{
-  amountOfProducts: number;
-  setAmountOfProducts: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export const amountOfProductsContext = createContext({} as amountOfProductsContextType)
-
-export function ProductDisplay(props : productDisplayProps) {
+export function ProductDisplay(props: productDisplayProps) {
+  const {
+    shoppingCart,
+    setShoppingCart,
+  } = useContext(ShoppingCartContext)
 
   const [amountOfProducts, setAmountOfProducts] = useState(0)
 
-  const { 
-    shoppingCart, 
-    setShoppingCart,
-    numberOfItemsInCart, 
-  } = useContext(ShoppingCartContext)
+  let itemIndex = shoppingCart.findIndex(item => item.id === props.product.id);
+  let newShoppingCart = [...shoppingCart]
 
-  function handleAddToCart(){
-    if(amountOfProducts === 0) return
-    
+  function handleAddToCart() {
+    if (amountOfProducts === 0) return
     const ItemAlreadyInCart = shoppingCart.find(item => item.id === props.product.id)
 
-    if(ItemAlreadyInCart){
-      ItemAlreadyInCart.quantity += amountOfProducts
-    }else{
+    if (ItemAlreadyInCart) {
+      newShoppingCart[itemIndex].quantity += amountOfProducts
+      setShoppingCart(newShoppingCart)
+    } else {
       setShoppingCart([...shoppingCart, {
-        "id" : props.product.id,
-        "quantity" : amountOfProducts
+        "id": props.product.id,
+        "quantity": amountOfProducts
       }])
     }
     setAmountOfProducts(0)
   }
 
   return (
-    <amountOfProductsContext.Provider value={{amountOfProducts, setAmountOfProducts}}>
-      <ProductDisplayContainer>
-        
-        <img src={props.product.image} />
-        <ProductTags>
-          <li>{props.product.type}</li>
-          {props.product.extras &&
-            props.product.extras.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))
-          }
-        </ProductTags>
-        <ProductInfo>
-          <h1>{props.product.name}</h1>
-          <p>{props.product.description}</p>
-        </ProductInfo>
+    <ProductDisplayContainer>
+      <img src={props.product.image} />
+      <ProductTags>
+        <li>{props.product.type}</li>
+        {props.product.extras &&
+          props.product.extras.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))
+        }
+      </ProductTags>
+      <ProductInfo>
+        <h1>{props.product.name}</h1>
+        <p>{props.product.description}</p>
+      </ProductInfo>
 
-        <BuyWrapper>
-          <div className="price__wrapper">
-            {props.product.currencySymbol}
-            <strong>
-              {props.product.price.toFixed(2)}
-            </strong>
-          </div>
+      <BuyWrapper>
+        <div className="price__wrapper">
+          {props.product.currencySymbol}
+          <strong>
+            {props.product.price.toFixed(2)}
+          </strong>
+        </div>
 
-          <AddToCartSection>
-            <Counter 
-              counter = {amountOfProducts}
-              setCounter = {setAmountOfProducts}
+        <AddToCartSection>
+          <Counter
+            counter={amountOfProducts}
+            setCounter={setAmountOfProducts}
+          />
+          <AddToCartButton
+            onClick={() => handleAddToCart()}
+          >
+            <ShoppingCart
+              size={22}
+              weight="fill"
+              color={defaultTheme["base-colors"]["base-card"]}
             />
-            <AddToCartButton
-              onClick={() => handleAddToCart()}
-            >
-              <ShoppingCart
-                size={22}
-                weight="fill"
-                color={defaultTheme["base-colors"]["base-card"]}
-              />
-            </AddToCartButton>
-          </AddToCartSection>
-        </BuyWrapper>
-      </ProductDisplayContainer>
-    </amountOfProductsContext.Provider>
+          </AddToCartButton>
+        </AddToCartSection>
+      </BuyWrapper>
+    </ProductDisplayContainer>
   )
 }

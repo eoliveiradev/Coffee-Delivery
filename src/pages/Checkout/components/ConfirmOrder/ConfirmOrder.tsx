@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../../../App";
 import { useContext } from "react";
 
 export function ConfirmOrder() {
-  const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext)
+  const { shoppingCart } = useContext(ShoppingCartContext)
 
   return (
     <ConfirmOrderContainer>
