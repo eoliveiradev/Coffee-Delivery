@@ -39,9 +39,9 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
       {!wasItemDeleted && (
         <CartItemDisplayContainer>
           <CartItemWrapper>
-            <img src={MenuItems[props.productId].image} />
+            <img src={MenuItems[itemIndex].image} />
             <CartItemInfo>
-              <h1>{MenuItems[props.productId].name}</h1>
+              <h1>{MenuItems[itemIndex].name}</h1>
               <EditCartItem>
                 <Counter counter={counter} setCounter={setCounter}/>
                 <RemoveCartItem
