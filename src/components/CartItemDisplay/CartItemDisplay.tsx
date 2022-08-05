@@ -1,6 +1,6 @@
 import { CartItemDisplayContainer, CartItemInfo, CartItemWrapper, EditCartItem, RemoveCartItem } from "./styles";
 import { MenuItems } from "../../data/Menu/MenuItems"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Counter } from "../Counter/Counter";
 import { ShoppingCartContext } from "../../App";
 
@@ -17,6 +17,13 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
 
   let itemIndex = shoppingCart.findIndex(item => item.id === props.productId);
   let newShoppingCart = shoppingCart
+
+  const initialAmountOfProducts = useRef(props.amountOfProducts)
+  const initialNumberOfItemsInCart = useRef(numberOfItemsInCart)
+
+  useEffect(() => {
+    setNumberOfitemsInCart(initialNumberOfItemsInCart.current - initialAmountOfProducts.current + counter)
+  }, [counter])
 
   function handleCounterChange(){
     newShoppingCart[itemIndex].quantity = counter
@@ -35,6 +42,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
       {!wasItemDeleted && (
         <CartItemDisplayContainer>
           <CartItemWrapper>
+            {initialAmountOfProducts.current}
             <img src={MenuItems[props.productId].image} />
             <CartItemInfo>
               <h1>{MenuItems[props.productId].name}</h1>
