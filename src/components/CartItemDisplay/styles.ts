@@ -11,6 +11,9 @@ export const CartItemDisplayContainer = styled.div`
 `
 
 export const CartItemWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+
   width: 256px;
   height: 64px;
 
@@ -18,4 +21,24 @@ export const CartItemWrapper = styled.div`
     width: 64px;
     height: 64px;
   }
+`
+
+export const CartItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 62px;
+
+  h1{
+    font-size: 1rem;
+    line-height: 20px;
+  }
+
+`
+
+export const EditCartItem = styled.div`
+  width: 172px;
+  height: 32px;
 `
