@@ -44,7 +44,7 @@ export function Checkout() {
             />
 
           </FormProvider>
-          <ConfirmOrder />
+          <ConfirmOrder isCepInvalid={isCepInvalid}/>
 
         </div>
       </form>

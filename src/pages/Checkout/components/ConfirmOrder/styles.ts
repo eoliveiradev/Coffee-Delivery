@@ -54,6 +54,10 @@ export const OrderViewer = styled.div`
     background-color: ${props => props.theme["product-colors"]["purple"]};
   }
 
+  .empty__cart-message{
+    text-align: center;
+  }
+
   .key__holder{
     hr{
       height: 1px;
@@ -88,4 +92,8 @@ export const ConfirmOrderButton = styled.button`
 
   background-color: ${props => props.theme["product-colors"]["yellow"]};
 
+  &:disabled{
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
 `
