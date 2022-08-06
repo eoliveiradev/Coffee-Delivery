@@ -15,6 +15,7 @@ export const ConfirmOrderContainer = styled.section`
 export const ConfirmOrderWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 
   width: 100%;
@@ -69,4 +70,22 @@ export const OrderViewer = styled.div`
       }  
     }
   }
+`
+
+export const ConfirmOrderButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 46px;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: ${props => props.theme["base-colors"]["white"]};
+
+  border-radius: 6px;
+
+  background-color: ${props => props.theme["product-colors"]["yellow"]};
+
 `

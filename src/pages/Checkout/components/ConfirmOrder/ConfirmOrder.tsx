@@ -1,5 +1,5 @@
 import { CartItemDisplay } from "../../../../components/CartItemDisplay/CartItemDisplay";
-import { ConfirmOrderContainer, ConfirmOrderWrapper, OrderViewer } from "./styles";
+import { ConfirmOrderButton, ConfirmOrderContainer, ConfirmOrderWrapper, OrderViewer } from "./styles";
 import { MenuItems } from "../../../../data/Menu/MenuItems";
 import { ShoppingCartContext } from "../../../../App";
 import { useContext } from "react";
@@ -33,6 +33,7 @@ export function ConfirmOrder() {
           })}
         </OrderViewer>
         <OrderTotalPrice itemsTotal={orderTotalPrice} deliveryPrice={3.50} curencySymbol={"R$"}/>
+        <ConfirmOrderButton type="submit">CONFIRMAR PEDIDO</ConfirmOrderButton>
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>
   )

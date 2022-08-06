@@ -33,7 +33,7 @@ export function ProductDisplay(props: productDisplayProps) {
       setShoppingCart([...shoppingCart, {
         "id": props.product.id,
         "quantity": amountOfProducts,
-        "price": props.product.price
+        "price": props.product.price,
       }])
     }
     setAmountOfProducts(0)

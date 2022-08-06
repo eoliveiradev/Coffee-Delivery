@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/themes/defaultTheme';
-import { coffeItemType } from './data/Menu/MenuItems';
 
 interface ShoppingCartItem{
   id: number;
