@@ -1,5 +1,5 @@
 import { CartItemDisplay } from "../../../../components/CartItemDisplay/CartItemDisplay";
-import { ConfirmOrderContainer, ConfirmOrderWrapper, OrderViewer } from "./styles";
+import { ConfirmOrderContainer, ConfirmOrderWrapper, OrderTotalPrice, OrderViewer } from "./styles";
 import { MenuItems } from "../../../../data/Menu/MenuItems";
 import { ShoppingCartContext } from "../../../../App";
 import { useContext } from "react";
@@ -31,6 +31,24 @@ export function ConfirmOrder() {
             }
           })}
         </OrderViewer>
+        <OrderTotalPrice>
+          <div className="items__total">
+            Total de itens
+            <span>R$ 29,70</span>
+          </div>
+          <div className="delivery__price">
+            Entrega
+            <span>R$ 3.50</span>
+          </div>
+          <div className="total__price">
+            <strong>
+              Total
+            </strong>
+            <strong>
+              R$ 33,20
+            </strong>
+          </div>
+        </OrderTotalPrice>
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>
   )
