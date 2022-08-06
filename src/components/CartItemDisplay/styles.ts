@@ -14,7 +14,7 @@ export const CartItemDisplayContainer = styled.div`
     position: absolute;
 
     top: 8px;
-    right: 4px;
+    right: 8px;
 
     font-size: 1rem;
     font-weight: 700;

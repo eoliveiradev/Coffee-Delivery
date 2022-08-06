@@ -19,7 +19,7 @@ export const CheckoutContainer = styled.main`
   .wrapper{
     display: flex;
     justify-content: center;
-    gap: 64px 32px;
+    gap: 32px;
 
     flex-wrap: wrap;
     width: 100%;

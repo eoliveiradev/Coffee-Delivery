@@ -35,32 +35,29 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   }
 
   return (
-    <>
-      <CartItemDisplayContainer>
-        <CartItemWrapper>
-          <img src={props.productsData[itemIndexInProductsData].image} />
-          <CartItemInfo>
-            <h1>{props.productsData[itemIndexInProductsData].name}</h1>
-            <EditCartItem>
-              <span className="counter__wrapper">
-                <Counter counter={counter} setCounter={setCounter} />
-              </span>
-
-              <RemoveCartItem
-                type="button"
-                onClick={() => handleRemoveCartItem()}
-              >
-                <Trash size={16} color="#8047F8" />
-                Remover
-              </RemoveCartItem>
-            </EditCartItem>
-          </CartItemInfo>
-        </CartItemWrapper>
-        <strong className="price__container">
-          {props.productsData[itemIndexInProductsData].currencySymbol}
-          {props.productsData[itemIndexInProductsData].price.toFixed(2)}
-        </strong>
-      </CartItemDisplayContainer>
-    </>
+    <CartItemDisplayContainer>
+      <CartItemWrapper>
+        <img src={props.productsData[itemIndexInProductsData].image} />
+        <CartItemInfo>
+          <h1>{props.productsData[itemIndexInProductsData].name}</h1>
+          <EditCartItem>
+            <span className="counter__wrapper">
+              <Counter counter={counter} setCounter={setCounter} />
+            </span>
+            <RemoveCartItem
+              type="button"
+              onClick={() => handleRemoveCartItem()}
+            >
+              <Trash size={16} color="#8047F8" />
+              Remover
+            </RemoveCartItem>
+          </EditCartItem>
+        </CartItemInfo>
+      </CartItemWrapper>
+      <strong className="price__container">
+        {props.productsData[itemIndexInProductsData].currencySymbol}
+        {(props.productsData[itemIndexInProductsData].price * shoppingCart[itemIndex].quantity).toFixed(2)}
+      </strong>
+    </CartItemDisplayContainer>
   )
 }

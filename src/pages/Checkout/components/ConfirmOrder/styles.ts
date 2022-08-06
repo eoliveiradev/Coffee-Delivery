@@ -7,7 +7,7 @@ export const ConfirmOrderContainer = styled.section`
   align-items: center;
   gap: 15px;
 
-  width: 100%;
+  width: 95%;
   max-width: 448px;
   height: 536px;
 `
@@ -22,6 +22,10 @@ export const ConfirmOrderWrapper = styled.div`
   height: 370px;
 
   padding: 40px;
+
+  @media(max-width: 468px){
+    padding: 40px 2vw;
+  }
 
   border-radius: 6px;
   background-color: ${props => props.theme["base-colors"]["base-card"]};
@@ -49,16 +53,20 @@ export const OrderViewer = styled.div`
     background-color: ${props => props.theme["product-colors"]["purple"]};
   }
 
-  hr{
-    height: 1px;
-    width: 100%;
+  .key__holder{
+    hr{
+      height: 1px;
+      width: 100%;
 
-    margin-top: 12px;
+      margin-top: 12px;
 
-    &:not(:last-child){
-      margin-bottom: 12px;
+      background-color: ${props => props.theme["base-colors"]["base-button"]};
     }
 
-    background-color: ${props => props.theme["base-colors"]["base-button"]};
+    &:not(:last-child){
+      hr{
+        margin-bottom: 12px;
+      }  
+    }
   }
 `

@@ -15,20 +15,18 @@ export function ConfirmOrder() {
         Confirme seu pedido
       </h1>
       <ConfirmOrderWrapper>
-        <button type="submit">Submit debug</button>
         <OrderViewer>
           {shoppingCart.map((item, index) => {
             if (item.quantity > 0) {
               return (
-                <>
+                <div className="key__holder" key={index}>
                   <CartItemDisplay
-                    key={index}
                     productsData={MenuItems}
                     productId={item.id}
                     amountOfProducts={item.quantity}
                   />
                   <hr/>
-                </>
+                </div>
               )
             }
           })}

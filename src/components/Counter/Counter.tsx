@@ -1,5 +1,3 @@
-import { useContext, useState } from "react"
-import { amountOfProductsContext } from "../ProductDisplay/ProductDisplay"
 import { CounterContainer } from "./styles"
 
 interface CounterProps{
