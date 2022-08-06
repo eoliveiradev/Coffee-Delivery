@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { OrderTotalPrice } from "../../../../components/OrderTotalPrice/OrderTotalPrice";
 
 export function ConfirmOrder() {
-  const { shoppingCart } = useContext(ShoppingCartContext)
+  const { shoppingCart, orderTotalPrice } = useContext(ShoppingCartContext)
 
   return (
     <ConfirmOrderContainer>
@@ -32,7 +32,7 @@ export function ConfirmOrder() {
             }
           })}
         </OrderViewer>
-        <OrderTotalPrice itemsTotal={32.99} deliveryPrice={3.50} curencySymbol={"R$"}/>
+        <OrderTotalPrice itemsTotal={orderTotalPrice} deliveryPrice={3.50} curencySymbol={"R$"}/>
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>
   )

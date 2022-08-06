@@ -32,7 +32,8 @@ export function ProductDisplay(props: productDisplayProps) {
     } else {
       setShoppingCart([...shoppingCart, {
         "id": props.product.id,
-        "quantity": amountOfProducts
+        "quantity": amountOfProducts,
+        "price": props.product.price
       }])
     }
     setAmountOfProducts(0)
