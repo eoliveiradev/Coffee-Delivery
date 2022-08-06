@@ -1,8 +1,9 @@
 import { CartItemDisplay } from "../../../../components/CartItemDisplay/CartItemDisplay";
-import { ConfirmOrderContainer, ConfirmOrderWrapper, OrderTotalPrice, OrderViewer } from "./styles";
+import { ConfirmOrderContainer, ConfirmOrderWrapper, OrderViewer } from "./styles";
 import { MenuItems } from "../../../../data/Menu/MenuItems";
 import { ShoppingCartContext } from "../../../../App";
 import { useContext } from "react";
+import { OrderTotalPrice } from "../../../../components/OrderTotalPrice/OrderTotalPrice";
 
 export function ConfirmOrder() {
   const { shoppingCart } = useContext(ShoppingCartContext)
@@ -31,24 +32,7 @@ export function ConfirmOrder() {
             }
           })}
         </OrderViewer>
-        <OrderTotalPrice>
-          <div className="items__total">
-            Total de itens
-            <span>R$ 29,70</span>
-          </div>
-          <div className="delivery__price">
-            Entrega
-            <span>R$ 3.50</span>
-          </div>
-          <div className="total__price">
-            <strong>
-              Total
-            </strong>
-            <strong>
-              R$ 33,20
-            </strong>
-          </div>
-        </OrderTotalPrice>
+        <OrderTotalPrice itemsTotal={32.99} deliveryPrice={3.50} curencySymbol={"R$"}/>
       </ConfirmOrderWrapper>
     </ConfirmOrderContainer>
   )
