@@ -47,7 +47,7 @@ export function ConfirmOrder(props: ConfirmOrderProps) {
             )}
         </OrderViewer>
         <OrderTotalPrice 
-          itemsTotal={orderTotalPrice} 
+          itemsTotal={orderTotalPrice ? orderTotalPrice : 0} 
           deliveryPrice={3.50} 
           curencySymbol={"R$"} 
         />

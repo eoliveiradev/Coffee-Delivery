@@ -17,7 +17,6 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext)
 
   let itemIndex = shoppingCart.findIndex(item => item.id === props.productId);
-  let itemIndexInProductsData = props.productsData.findIndex(item => item.id === props.productId);
   let newShoppingCart = [...shoppingCart]
 
   useEffect(() => {
