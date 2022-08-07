@@ -2,7 +2,7 @@ import {images} from "."
 
 export type extrasType = "Gelado" | "Com Leite" | "Alcoólico" | ""
 
-export interface coffeItemType {
+export interface CoffeeItemType {
   id: number;
   name: string,
   description: string,
@@ -13,7 +13,7 @@ export interface coffeItemType {
   price: number
 }
 
-export const MenuItems: coffeItemType[] = [
+export const MenuItems: CoffeeItemType[] = [
   {
     "id" : 1,
     "name": "Expresso Tradicional",

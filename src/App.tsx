@@ -1,19 +1,18 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { CoffeeItemType } from './data/Menu/MenuItems';
 import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/themes/defaultTheme';
 
-interface ShoppingCartItem{
-  id: number;
+export interface ShoppingCartItemType extends CoffeeItemType{
   quantity: number;
-  price: number;
 }
 
 interface ShoppingCartContextType {
-  shoppingCart: ShoppingCartItem[];
-  setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCartItem[]>>;
+  shoppingCart: ShoppingCartItemType[];
+  setShoppingCart: React.Dispatch<React.SetStateAction<ShoppingCartItemType[]>>;
   numberOfItemsInCart: number;
   orderTotalPrice: number;
 }
@@ -21,7 +20,7 @@ interface ShoppingCartContextType {
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCartItem[]>([])
+  const [shoppingCart, setShoppingCart] = useState<ShoppingCartItemType[]>([])
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState<number>(0)
   const [orderTotalPrice, setOrderTotalPrice] = useState(0)
 

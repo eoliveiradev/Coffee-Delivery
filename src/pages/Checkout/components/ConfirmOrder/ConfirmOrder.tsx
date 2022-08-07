@@ -31,6 +31,7 @@ export function ConfirmOrder(props: ConfirmOrderProps) {
                     <CartItemDisplay
                       productsData={MenuItems}
                       productId={item.id}
+                      shoppingCartItem={item}
                       amountOfProducts={item.quantity}
                     />
                     <hr />

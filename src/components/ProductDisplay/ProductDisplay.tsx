@@ -1,4 +1,4 @@
-import { coffeItemType } from "../../data/Menu/MenuItems";
+import { CoffeeItemType } from "../../data/Menu/MenuItems";
 import { AddToCartSection, BuyWrapper, AddToCartButton, ProductDisplayContainer, ProductInfo, ProductTags } from "./styles";
 import { ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
@@ -6,7 +6,7 @@ import React, { createContext, useContext, useState } from "react";
 import { Counter } from "../Counter/Counter";
 import { ShoppingCartContext } from "../../App";
 
-type productType = coffeItemType
+type productType = CoffeeItemType
 interface productDisplayProps {
   product: productType;
 }
@@ -32,6 +32,12 @@ export function ProductDisplay(props: productDisplayProps) {
     } else {
       setShoppingCart([...shoppingCart, {
         "id": props.product.id,
+        "name": props.product.name,
+        "description": props.product.description,
+        "image": props.product.image,
+        "type": props.product.type,
+        "extras": props.product.extras,
+        "currencySymbol": props.product.currencySymbol,
         "quantity": amountOfProducts,
         "price": props.product.price,
       }])

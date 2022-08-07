@@ -1,6 +1,6 @@
 import { ProductDisplay } from "../ProductDisplay/ProductDisplay";
 import { Coffees, CoffeesMenuContainer } from "./styles";
-import { coffeItemType, MenuItems } from "../../data/Menu/MenuItems";
+import { MenuItems } from "../../data/Menu/MenuItems";
 
 export function CoffesMenu(){
   return(

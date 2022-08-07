@@ -1,13 +1,14 @@
 import { CartItemDisplayContainer, CartItemInfo, CartItemWrapper, EditCartItem, RemoveCartItem } from "./styles";
-import { coffeItemType } from "../../data/Menu/MenuItems"
+import { CoffeeItemType } from "../../data/Menu/MenuItems"
 import { useContext, useEffect, useState } from "react";
 import { Counter } from "../Counter/Counter";
-import { ShoppingCartContext } from "../../App";
+import { ShoppingCartContext, ShoppingCartItemType } from "../../App";
 import { Trash } from "phosphor-react";
 
 interface CartItemDisplayProps {
-  productsData: coffeItemType[];
+  productsData: CoffeeItemType[];
   productId: number;
+  shoppingCartItem: ShoppingCartItemType;
   amountOfProducts: number;
 }
 
@@ -37,9 +38,9 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
   return (
     <CartItemDisplayContainer>
       <CartItemWrapper>
-        <img src={props.productsData[itemIndexInProductsData].image} />
+        <img src={props.shoppingCartItem.image} />
         <CartItemInfo>
-          <h1>{props.productsData[itemIndexInProductsData].name}</h1>
+          <h1>{props.shoppingCartItem.name}</h1>
           <EditCartItem>
             <span className="counter__wrapper">
               <Counter counter={counter} setCounter={setCounter} />
@@ -55,8 +56,8 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
         </CartItemInfo>
       </CartItemWrapper>
       <strong className="price__container">
-        {props.productsData[itemIndexInProductsData].currencySymbol}
-        {(props.productsData[itemIndexInProductsData].price * shoppingCart[itemIndex].quantity).toFixed(2)}
+        {props.shoppingCartItem.currencySymbol}
+        {(props.shoppingCartItem.price * shoppingCart[itemIndex].quantity).toFixed(2)}
       </strong>
     </CartItemDisplayContainer>
   )
