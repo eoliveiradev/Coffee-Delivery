@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { OrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
@@ -12,6 +13,7 @@ export function Checkout() {
   const [isCepInvalid, setIsCepInvalid] = useState(true)
   const {confirmedOrderData, setConfirmedOrderData} = useContext(OrderDataContext)
   const {shoppingCart, setShoppingCart } = useContext(ShoppingCartContext)
+  const navigateTo = useNavigate()
 
   const addressForm = useForm<any>({
     defaultValues: {
@@ -36,6 +38,7 @@ export function Checkout() {
     setConfirmedOrderData(newOrderData)
     setShoppingCart([] as ShoppingCartItemType[])
     console.log(newOrderData) // Will send data to api in the future.
+    navigateTo("/orderConfirmed")
   }
 
   return (
