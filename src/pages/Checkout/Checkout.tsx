@@ -11,7 +11,7 @@ export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<paymentMethodType>("creditCard")
   const [isCepInvalid, setIsCepInvalid] = useState(true)
   const {confirmedOrderData, setConfirmedOrderData} = useContext(OrderDataContext)
-  const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext)
+  const {shoppingCart, setShoppingCart } = useContext(ShoppingCartContext)
 
   const addressForm = useForm<any>({
     defaultValues: {

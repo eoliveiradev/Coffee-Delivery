@@ -53,7 +53,7 @@ export function ConfirmOrder(props: ConfirmOrderProps) {
         />
         <ConfirmOrderButton
           type="submit"
-          disabled={props.isCepInvalid}
+          disabled={props.isCepInvalid || numberOfItemsInCart === 0}
         >
           CONFIRMAR PEDIDO
         </ConfirmOrderButton>

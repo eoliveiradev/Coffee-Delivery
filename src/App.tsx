@@ -51,6 +51,7 @@ function App() {
 
   let totalItemsInCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.quantity), 0)
   let totalPriceOfCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.price * item.quantity), 0)
+  
   useEffect(() => {
     if(!isNaN(totalItemsInCart) && !isNaN(totalPriceOfCart)){
       setNumberOfItemsInCart(totalItemsInCart)
