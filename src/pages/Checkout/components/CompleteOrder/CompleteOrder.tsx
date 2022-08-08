@@ -2,6 +2,7 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "pho
 import React, { useState } from "react";
 import axios from "axios"
 import { useFormContext } from "react-hook-form";
+import { paymentMethodType } from "../../../../App";
 import {
   AddressFormContainer,
   ChoosePaymentMethodContainer,
@@ -11,7 +12,7 @@ import {
 
 interface CompleteOrderProps {
   paymentMethod: string;
-  setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;
+  setPaymentMethod: React.Dispatch<React.SetStateAction<paymentMethodType>>;
   isCepInvalid: boolean;
   setIsCepInvalid: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -186,7 +187,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
               type="radio"
               name="paymentMethod"
               checked={props.paymentMethod === "creditCard"}
-              onChange={(e) => props.setPaymentMethod(e.target.value)}
+              onChange={(e) => props.setPaymentMethod(e.target.value as paymentMethodType)}
             />
             <label htmlFor="credit-card">
               <span>
@@ -200,7 +201,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
               value="debitCard"
               type="radio"
               name="paymentMethod"
-              onChange={(e) => props.setPaymentMethod(e.target.value)}
+              onChange={(e) => props.setPaymentMethod(e.target.value as paymentMethodType)}
             />
             <label htmlFor="debit-card">
               <span>
@@ -214,7 +215,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
               value="cash"
               type="radio"
               name="paymentMethod"
-              onChange={(e) => props.setPaymentMethod(e.target.value)}
+              onChange={(e) => props.setPaymentMethod(e.target.value as paymentMethodType)}
             />
             <label htmlFor="cash">
               <span>

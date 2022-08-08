@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { OrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType } from "../../App";
+import { OrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
 import {
@@ -8,7 +8,7 @@ import {
 } from "./styled";
 
 export function Checkout() {
-  const [paymentMethod, setPaymentMethod] = useState("creditCard")
+  const [paymentMethod, setPaymentMethod] = useState<paymentMethodType>("creditCard")
   const [isCepInvalid, setIsCepInvalid] = useState(true)
   const {confirmedOrderData, setConfirmedOrderData} = useContext(OrderDataContext)
   const {shoppingCart, setShoppingCart} = useContext(ShoppingCartContext)
@@ -30,7 +30,8 @@ export function Checkout() {
   function onSubmit(data: any) {
     let newOrderData: ConfirmedOrderDataType = {
       "products": shoppingCart,
-      "address": data
+      "address": data,
+      "paymentMethod": paymentMethod
     }
     setConfirmedOrderData(newOrderData)
     setShoppingCart([] as ShoppingCartItemType[])

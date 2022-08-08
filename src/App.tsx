@@ -27,9 +27,12 @@ interface AddressType {
   state: string;
 }
 
+export type paymentMethodType = "creditCard" | "debitCard" | "cash"
+
 export interface ConfirmedOrderDataType {
   products: ShoppingCartItemType[]
   address: AddressType;
+  paymentMethod: paymentMethodType;
 }
 
 interface OrderDataContextType{
