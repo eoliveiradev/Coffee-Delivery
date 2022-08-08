@@ -61,7 +61,7 @@ export function DefaultHeader() {
             onFocus={() => setIsSelectingLocation(false)}
           >
             <CartWrapper>
-              <span>{numberOfItemsInCart ? numberOfItemsInCart : 0}</span>
+              <span>{ numberOfItemsInCart }</span>
               <ShoppingCart 
                 size={22} 
                 weight="fill" 

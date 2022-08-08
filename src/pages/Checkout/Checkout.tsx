@@ -28,13 +28,12 @@ export function Checkout() {
   const { register, handleSubmit, watch, formState: { errors } } = addressForm;
 
   function onSubmit(data: any) {
-    console.log("submited")
     let newOrderData: ConfirmedOrderDataType = {
       "products": shoppingCart,
       "address": data
     }
     setConfirmedOrderData(newOrderData)
-    setShoppingCart([{} as ShoppingCartItemType])
+    setShoppingCart([] as ShoppingCartItemType[])
     console.log(newOrderData) // Will send data to api in the future.
   }
 
