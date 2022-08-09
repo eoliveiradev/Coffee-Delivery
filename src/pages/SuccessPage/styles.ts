@@ -10,6 +10,7 @@ export const SuccessPageContainer = styled.main`
 
   @media(max-width: 1200px){
     align-items: center;
+    text-align: center;
     margin-top: 130px;
   }
 
@@ -85,6 +86,6 @@ export const DeliveryInfo = styled.div`
 export const OrderInfo = styled.div`
   display: flex;
   gap: 12px;
-  
+
 
 `

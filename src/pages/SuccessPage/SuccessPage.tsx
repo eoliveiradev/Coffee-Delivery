@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { OrderDataContext } from "../../App";
 
 export function SuccessPage() {
-  const {confirmedOrderData} = useContext(OrderDataContext)
+  const { confirmedOrderData } = useContext(OrderDataContext)
 
   return (
     <SuccessPageContainer>
@@ -19,13 +19,19 @@ export function SuccessPage() {
               </div>
               <div className="info__wrapper">
                 <p>
-                  Entraga em 
+                  Entrega em
                   <strong>
-                    {confirmedOrderData.address.street}, {confirmedOrderData.address.number}
+                    {` 
+                      ${confirmedOrderData.address.street},
+                      ${confirmedOrderData.address.number}
+                    `}
                   </strong>
-                  {confirmedOrderData.address.neighborhood} -
-                  {confirmedOrderData.address.city}, 
-                  {confirmedOrderData.address.state}
+                  <br />
+                  {`
+                    ${confirmedOrderData.address.neighborhood} 
+                    ${confirmedOrderData.address.city},
+                    ${confirmedOrderData.address.state} 
+                  `}
                 </p>
               </div>
             </OrderInfo>
@@ -50,7 +56,6 @@ export function SuccessPage() {
                   {confirmedOrderData.paymentMethod == "creditCard" && ("Cartão de Crédito")}
                   {confirmedOrderData.paymentMethod == "debitCard" && ("Cartão de Débito")}
                 </strong>
-
               </div>
             </OrderInfo>
 
