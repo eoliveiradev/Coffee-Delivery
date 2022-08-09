@@ -87,5 +87,42 @@ export const OrderInfo = styled.div`
   display: flex;
   gap: 12px;
 
+  min-height: 42px;
+
+  .icon__wrapper{
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+  }
+
+  .purple{
+    background-color: ${props => props.theme["product-colors"]["purple"]};
+  }
+
+  .yellow{
+    background-color: ${props => props.theme["product-colors"]["yellow"]};
+  }
+
+  .yellow-dark{
+    background-color: ${props => props.theme["product-colors"]["yellow-dark"]};
+  }
+
+  .info__wrapper{
+    
+    p, h1, strong{
+      font-size: 1rem;
+      color: ${props => props.theme["base-colors"]["base-text"]};
+      font-family: ${props => props.theme["fonts"]["primary-text"]};
+    }
+    
+    h1{
+      font-weight: 400;
+    }
+
+    strong{
+      font-weight: bold;
+    }
+  }
 
 `
