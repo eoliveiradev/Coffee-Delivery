@@ -19,13 +19,20 @@ export const SuccessPageContainer = styled.main`
     font-size: 2rem;
     font-weight: 800;
     color: ${props => props.theme["product-colors"]["yellow-dark"]};
+
+    @media(max-width: 368px){
+      font-size: 1.8rem
+    }
   }
 
   p{
     font-size: 1.25rem;
     color: ${props => props.theme["base-colors"]["base-subtitle"]};
+    
+    @media(max-width: 368px){
+      font-size: 1.15rem
+    }
   }
-
 `
 
 export const DeliveryInfo = styled.div`
@@ -90,6 +97,10 @@ export const OrderInfo = styled.div`
   min-height: 42px;
 
   .icon__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 32px;
     height: 32px;
 
@@ -109,7 +120,6 @@ export const OrderInfo = styled.div`
   }
 
   .info__wrapper{
-    
     p, h1, strong{
       font-size: 1rem;
       color: ${props => props.theme["base-colors"]["base-text"]};
@@ -122,6 +132,10 @@ export const OrderInfo = styled.div`
 
     strong{
       font-weight: bold;
+    }
+
+    @media(max-width: 1200px){
+      text-align: left;
     }
   }
 
