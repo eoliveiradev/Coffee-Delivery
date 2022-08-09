@@ -2,6 +2,7 @@ import { DeliveryInfo, OrderInfo, SuccessPageContainer } from "./styles";
 import SuccessPageImage from "../../assets/images/SuccessPageImage.png";
 import { useContext } from "react";
 import { OrderDataContext } from "../../App";
+import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 
 export function SuccessPage() {
   const { confirmedOrderData } = useContext(OrderDataContext)
@@ -14,12 +15,12 @@ export function SuccessPage() {
         <div className="linear-gradient-border">
           <div className="deliveryInfo__container">
             <OrderInfo>
-              <div className="icon__wrapper">
-
+              <div className="icon__wrapper purple">
+                <MapPin size={16} color="#fafafa" />
               </div>
               <div className="info__wrapper">
                 <p>
-                  Entrega em
+                  Entrega em 
                   <strong>
                     {` 
                       ${confirmedOrderData.address.street},
@@ -36,18 +37,17 @@ export function SuccessPage() {
               </div>
             </OrderInfo>
             <OrderInfo>
-              <div className="icon__wrapper">
-
+              <div className="icon__wrapper yellow">
+                <Timer size={16} color="#fafafa" weight="fill" />
               </div>
               <div className="info__wrapper">
                 <h1>Previsão de entrega</h1>
                 <strong>20 min - 30 min </strong>
-
               </div>
             </OrderInfo>
             <OrderInfo>
-              <div className="icon__wrapper">
-
+              <div className="icon__wrapper yellow-dark">
+                <CurrencyDollar size={16} color="#fafafa" weight="fill" />
               </div>
               <div className="info__wrapper">
                 <h1>Pagamento na entrega</h1>
@@ -58,10 +58,8 @@ export function SuccessPage() {
                 </strong>
               </div>
             </OrderInfo>
-
           </div>
         </div>
-
         <img src={SuccessPageImage} />
       </DeliveryInfo>
     </SuccessPageContainer>
