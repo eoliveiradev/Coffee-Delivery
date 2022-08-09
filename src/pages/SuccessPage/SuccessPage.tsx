@@ -1,4 +1,4 @@
-import { SuccessPageContainer } from "./styles";
+import { DeliveryInfo, SuccessPageContainer } from "./styles";
 import SuccessPageImage from "../../assets/images/SuccessPageImage.png";
 
 export function SuccessPage(){
@@ -6,12 +6,13 @@ export function SuccessPage(){
     <SuccessPageContainer>
       <h1>Uhu! Pedido confirmado</h1>
       <p>Agora é só aguardar que logo o café chegará até você</p>
-      <div className="deliveryInfo">
+      <DeliveryInfo>
         <div className="deliveryInfo__container">
-
+            <div className="linear-gradient-border"/>
+            
         </div>
         <img src={SuccessPageImage} />
-      </div>
+      </DeliveryInfo>
     </SuccessPageContainer>
   )
 }
