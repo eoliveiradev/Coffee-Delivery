@@ -47,10 +47,10 @@ export function CompleteOrder(props: CompleteOrderProps) {
         .then(response => {
           let cepData: CepDataType = response.data
 
-          setValue("rua", cepData.street);
-          setValue("bairro", cepData.neighborhood);
-          setValue("cidade", cepData.city);
-          setValue("uf", cepData.state);
+          setValue("street", cepData.street);
+          setValue("neighborhood", cepData.neighborhood);
+          setValue("city", cepData.city);
+          setValue("state", cepData.state);
 
           props.setIsCepInvalid(false)
         })
@@ -115,7 +115,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
               id="rua"
               type="text"
               placeholder="Rua"
-              {...register("rua", { required: true })}
+              {...register("street", { required: true })}
             />
 
             <div className="flex">
@@ -124,7 +124,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                   id="numero"
                   type="number"
                   placeholder="Número"
-                  {...register("numero", { required: true })}
+                  {...register("number", { required: true })}
                 />
                 {errors.numero &&
                   <div
@@ -138,7 +138,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 id="complemento"
                 type="text"
                 placeholder="Complemento (opcional)"
-                {...register("complemento")}
+                {...register("complement")}
               />
             </div>
 
@@ -147,21 +147,21 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 id="bairro"
                 type="text"
                 placeholder="Bairro"
-                {...register("bairro", { required: true })}
+                {...register("neighborhood", { required: true })}
               />
               <input
                 id="cidade"
                 type="text"
                 placeholder="Cidade"
                 disabled={!props.isCepInvalid}
-                {...register("cidade", { required: true })}
+                {...register("city", { required: true })}
               />
               <input
                 id="uf"
                 type="text"
                 placeholder="UF"
                 disabled={!props.isCepInvalid}
-                {...register("uf", { required: true })}
+                {...register("state", { required: true })}
               />
             </div>
           </div>

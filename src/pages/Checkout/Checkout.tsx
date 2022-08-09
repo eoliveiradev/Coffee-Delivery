@@ -18,12 +18,12 @@ export function Checkout() {
   const addressForm = useForm<any>({
     defaultValues: {
       cep: "",
-      rua: "",
-      numero: "",
-      complemento: "",
-      bairro: "",
-      cidade: "",
-      uf: "",
+      street: "",
+      number: "",
+      complement: "",
+      neighborhood: "",
+      city: "",
+      state: "",
     }
   })
 
