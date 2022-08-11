@@ -126,7 +126,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                   placeholder="Número"
                   {...register("number", { required: true })}
                 />
-                {errors.numero &&
+                {errors.number &&
                   <div
                     className="invalid__input-message"
                   >
