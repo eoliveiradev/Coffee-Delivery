@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { OrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
+import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
 import {
@@ -11,7 +11,7 @@ import {
 export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<paymentMethodType>("creditCard")
   const [isCepInvalid, setIsCepInvalid] = useState(true)
-  const {confirmedOrderData, setConfirmedOrderData} = useContext(OrderDataContext)
+  const {confirmedOrderData, setConfirmedOrderData} = useContext(ConfirmedOrderDataContext)
   const {shoppingCart, setShoppingCart } = useContext(ShoppingCartContext)
   const navigateTo = useNavigate()
 

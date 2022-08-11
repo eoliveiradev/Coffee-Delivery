@@ -1,11 +1,11 @@
 import { DeliveryInfo, OrderInfo, SuccessPageContainer } from "./styles";
 import SuccessPageImage from "../../assets/images/SuccessPageImage.png";
 import { useContext } from "react";
-import { OrderDataContext } from "../../App";
+import { ConfirmedOrderDataContext } from "../../App";
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 
 export function SuccessPage() {
-  const { confirmedOrderData } = useContext(OrderDataContext)
+  const { confirmedOrderData } = useContext(ConfirmedOrderDataContext)
 
   return (
     <SuccessPageContainer>

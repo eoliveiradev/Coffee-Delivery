@@ -35,13 +35,13 @@ export interface ConfirmedOrderDataType {
   paymentMethod: paymentMethodType;
 }
 
-interface OrderDataContextType{
+interface ConfirmedOrderDataContextType{
   confirmedOrderData: ConfirmedOrderDataType;
   setConfirmedOrderData: React.Dispatch<React.SetStateAction<ConfirmedOrderDataType>>;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
-export const OrderDataContext = createContext({} as OrderDataContextType)
+export const ConfirmedOrderDataContext = createContext({} as ConfirmedOrderDataContextType)
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState<ShoppingCartItemType[]>([])
@@ -72,12 +72,12 @@ function App() {
           orderTotalPrice: orderTotalPrice
         }}
       >
-        <OrderDataContext.Provider value={{confirmedOrderData, setConfirmedOrderData}}>
+        <ConfirmedOrderDataContext.Provider value={{confirmedOrderData, setConfirmedOrderData}}>
           <BrowserRouter>
             <GlobalStyle />
             <Router />
           </BrowserRouter>
-        </OrderDataContext.Provider>
+        </ConfirmedOrderDataContext.Provider>
       </ShoppingCartContext.Provider>
     </ThemeProvider>
   )
