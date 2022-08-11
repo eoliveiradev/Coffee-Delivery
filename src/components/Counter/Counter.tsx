@@ -6,16 +6,13 @@ interface CounterProps{
 }
 
 export function Counter(props: CounterProps){
+  function handleCounter(method : "add" | "remove"){
+    const options = {
+      "add": () => props.setCounter(props.counter + 1),
+      "remove": () => props.counter > 0 && props.setCounter(props.counter - 1)
+    }
 
-  function handleCounter(method : string){
-    if(method === "remove"){
-      if(props.counter > 0){
-        props.setCounter(props.counter - 1);
-      }
-    }
-    else if(method === "add"){
-      props.setCounter(props.counter + 1);
-    }
+    options[method]();
   }
 
   return(
