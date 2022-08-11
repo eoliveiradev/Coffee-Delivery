@@ -38,7 +38,7 @@ export function Checkout() {
     setConfirmedOrderData(newOrderData)
     setShoppingCart([] as ShoppingCartItemType[])
     console.log(newOrderData) // Will send data to api in the future.
-    navigateTo("/orderConfirmed")
+    navigateTo("/pedido-confirmado")
   }
 
   return (
