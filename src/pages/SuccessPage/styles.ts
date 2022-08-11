@@ -140,3 +140,44 @@ export const OrderInfo = styled.div`
   }
 
 `
+
+
+export const NoConfirmedOrder = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  width: 100%;
+
+  margin-top: 80px;
+
+  h1{
+    line-height: 2.3rem;
+  }
+
+
+  #back-to-home-btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      padding: 0.5rem 1rem;
+      background-color: red;
+      
+      border-radius: 6px;
+
+      font-family: ${props => props.theme["fonts"]["header"]};
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: ${props => props.theme["product-colors"]["purple-dark"]};
+
+
+      background-color: ${props => props.theme["product-colors"]["purple-light"]};
+
+      #arrow-icon{
+        color: ${props => props.theme["product-colors"]["purple"]};
+      }
+    }
+`
