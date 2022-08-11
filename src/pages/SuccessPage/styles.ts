@@ -176,6 +176,11 @@ export const NoConfirmedOrder = styled.div`
 
       background-color: ${props => props.theme["product-colors"]["purple-light"]};
 
+      &:hover, :focus-visible{
+        outline: 2px solid black;
+        outline-offset: 2px;
+      }
+
       #arrow-icon{
         color: ${props => props.theme["product-colors"]["purple"]};
       }

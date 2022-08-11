@@ -83,8 +83,20 @@ export const RemoveCartItem = styled.button`
   width: 92px;
   height: 32px;
 
+  border-radius: 6px;
+
   font-size: 0.75rem;
   color: ${props => props.theme["base-colors"]["base-text"]};
 
   background-color: ${props => props.theme["base-colors"]["base-button"]};
+
+  &:hover{
+    outline: 1px solid black;
+  }
+
+  &:focus-visible{
+    outline: 2px solid black;
+  }
+
+  outline-offset: 2px;
 `

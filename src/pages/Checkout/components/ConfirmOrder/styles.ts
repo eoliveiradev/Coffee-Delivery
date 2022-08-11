@@ -92,8 +92,15 @@ export const ConfirmOrderButton = styled.button`
 
   background-color: ${props => props.theme["product-colors"]["yellow"]};
 
+  transition: opacity 0.2s;
+
   &:disabled{
     opacity: 0.8;
     cursor: not-allowed;
+  }
+
+  &:focus-visible{
+    outline: 2px solid black;
+    outline-offset: 2px;
   }
 `
