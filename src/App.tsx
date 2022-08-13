@@ -35,7 +35,7 @@ export interface ConfirmedOrderDataType {
   paymentMethod: paymentMethodType;
 }
 
-interface ConfirmedOrderDataContextType{
+interface ConfirmedOrderDataContextType {
   confirmedOrderData: ConfirmedOrderDataType;
   setConfirmedOrderData: React.Dispatch<React.SetStateAction<ConfirmedOrderDataType>>;
 }
@@ -51,15 +51,31 @@ function App() {
 
   let totalItemsInCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.quantity), 0)
   let totalPriceOfCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.price * item.quantity), 0)
-  
+
+  const getDB = (DB: string) => JSON.parse(localStorage.getItem(DB) as string) ?? [];
+  const setDB = (DBName: string, newDB: any) => localStorage.setItem(DBName, JSON.stringify(newDB));
+  const banco = getDB('shoppingCart');
+
+  function handleAddCartToCache() {
+    if(banco.length === 0){
+      setDB('shoppingCart', shoppingCart)
+    }else if(shoppingCart.length === 0 && banco.length > 0){
+      setShoppingCart(banco)
+    }else if (shoppingCart.length > 0){
+      setDB('shoppingCart', shoppingCart)
+    }
+  }
+
   useEffect(() => {
-    if(!isNaN(totalItemsInCart) && !isNaN(totalPriceOfCart)){
+    if (!isNaN(totalItemsInCart) && !isNaN(totalPriceOfCart)) {
       setNumberOfItemsInCart(totalItemsInCart)
       setOrderTotalPrice(totalPriceOfCart)
     } else {
       setNumberOfItemsInCart(0)
       setOrderTotalPrice(0)
     }
+
+    handleAddCartToCache();
   }, [shoppingCart])
 
   return (
@@ -72,7 +88,7 @@ function App() {
           orderTotalPrice: orderTotalPrice
         }}
       >
-        <ConfirmedOrderDataContext.Provider value={{confirmedOrderData, setConfirmedOrderData}}>
+        <ConfirmedOrderDataContext.Provider value={{ confirmedOrderData, setConfirmedOrderData }}>
           <BrowserRouter>
             <GlobalStyle />
             <Router />
