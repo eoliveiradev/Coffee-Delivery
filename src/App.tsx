@@ -53,8 +53,17 @@ function App() {
   const [orderTotalPrice, setOrderTotalPrice] = useState(0)
   const [confirmedOrderData, setConfirmedOrderData] = useState<ConfirmedOrderDataType>({} as ConfirmedOrderDataType)
 
-  let totalItemsInCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.quantity), 0)
-  let totalPriceOfCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.price * item.quantity), 0)
+  let totalItemsInCart: number = shoppingCart
+    .reduce(
+      (previousValue, item) => (
+        previousValue + item.quantity
+      ), 0)
+
+  let totalPriceOfCart: number = shoppingCart
+    .reduce(
+      (previousValue, item) => (
+        previousValue + item.price * item.quantity
+      ), 0)
 
   function handleAddCartToCache() {
     if(banco.length === 0){
@@ -74,8 +83,8 @@ function App() {
       setNumberOfItemsInCart(0)
       setOrderTotalPrice(0)
     }
-    
-    !confirmedOrderData.products && handleAddCartToCache();
+
+    !(confirmedOrderData.products && shoppingCart.length === 0) && handleAddCartToCache();
   }, [shoppingCart])
 
   return (
