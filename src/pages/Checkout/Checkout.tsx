@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
+import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType, setDB } from "../../App";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
 import {
@@ -36,7 +36,10 @@ export function Checkout() {
       "paymentMethod": paymentMethod
     }
     setConfirmedOrderData(newOrderData)
+
     setShoppingCart([] as ShoppingCartItemType[])
+    setDB('shoppingCart', [])
+    
     console.log(newOrderData) // Will send data to api in the future.
     navigateTo("/pedido-confirmado")
   }

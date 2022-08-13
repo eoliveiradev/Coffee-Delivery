@@ -17,6 +17,10 @@ interface ShoppingCartContextType {
   orderTotalPrice: number;
 }
 
+export const getDB = (DB: string) => JSON.parse(localStorage.getItem(DB) as string) ?? [];
+export const setDB = (DBName: string, newDB: any) => localStorage.setItem(DBName, JSON.stringify(newDB));
+export const banco = getDB('shoppingCart');
+
 interface AddressType {
   cep: string;
   street: string;
@@ -52,10 +56,6 @@ function App() {
   let totalItemsInCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.quantity), 0)
   let totalPriceOfCart: number = shoppingCart.reduce((previousValue, item, index) => (previousValue + item.price * item.quantity), 0)
 
-  const getDB = (DB: string) => JSON.parse(localStorage.getItem(DB) as string) ?? [];
-  const setDB = (DBName: string, newDB: any) => localStorage.setItem(DBName, JSON.stringify(newDB));
-  const banco = getDB('shoppingCart');
-
   function handleAddCartToCache() {
     if(banco.length === 0){
       setDB('shoppingCart', shoppingCart)
@@ -74,8 +74,8 @@ function App() {
       setNumberOfItemsInCart(0)
       setOrderTotalPrice(0)
     }
-
-    handleAddCartToCache();
+    
+    !confirmedOrderData.products && handleAddCartToCache();
   }, [shoppingCart])
 
   return (
