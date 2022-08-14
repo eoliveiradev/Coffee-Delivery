@@ -14,29 +14,24 @@ export function LocationSelectionMenu() {
   const cepFirstPart = useRef<HTMLInputElement>(null);
   const cepSecondPart = useRef<HTMLInputElement>(null);
 
-  function handleFirstPart(e : ChangeEvent<HTMLInputElement>){
-    setValue("cepFirstPart", e.target.value)
-    
-    if(e.target.value.length === 5 ){
-      cepSecondPart.current && cepSecondPart.current.focus();
+  function handleCepChange(
+    event: ChangeEvent<HTMLInputElement>,
+    cepPart: "cepFirstPart" | "cepSecondPart",
+    partLength: number,
+  ){
+    const variations = {
+      "cepFirstPart": () => cepSecondPart.current && cepSecondPart.current.focus(),
+      "cepSecondPart": () => cepFirstPart.current && cepFirstPart.current.focus()
     }
-    else if(e.target.value.length === 6){
-      let newValue = e.target.value.slice(0, 5)
-      e.target.value = newValue;
-      setValue("cepFirstPart", newValue);
-    }
-  }
 
-  function handleSecondPart(e : ChangeEvent<HTMLInputElement>){
-    setValue("cepSecondPart", e.target.value);
+    setValue(cepPart, event.target.value)
 
-    if(e.target.value.length === 0){
-      cepFirstPart.current && cepFirstPart.current.focus();
-    }
-    else if(e.target.value.length === 4){
-      let newValue = e.target.value.slice(0, 3);
-      e.target.value = newValue;
-      setValue("cepSecondPart", newValue);
+    if (event.target.value.length === (cepPart === "cepFirstPart" ? partLength : 0)) {
+      variations[cepPart]();
+    }else if(event.target.value.length === partLength + 1){
+      let newValue = event.target.value.slice(0, partLength);
+      event.target.value = newValue;
+      setValue(cepPart, newValue);
     }
   }
 
@@ -54,7 +49,7 @@ export function LocationSelectionMenu() {
           type="number"
           {...register("cepFirstPart", { required: true, minLength: 5, maxLength: 5 })}
           ref={cepFirstPart}
-          onChange={(e) => handleFirstPart(e)}
+          onChange={(e) => handleCepChange(e, "cepFirstPart", 5)}
         />
         -
         <input
@@ -62,7 +57,7 @@ export function LocationSelectionMenu() {
           type="number"
           {...register("cepSecondPart", { required: true, minLength: 3, maxLength: 3 })}
           ref={cepSecondPart}
-          onChange={(e) => handleSecondPart(e)}
+          onChange={(e) => handleCepChange(e, "cepSecondPart", 3)}
         />
       </CepInput>
 
