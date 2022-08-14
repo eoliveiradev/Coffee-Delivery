@@ -1,79 +1,73 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import { LocationContext } from "../../../../layouts/DefaultLayout";
-import { LocationSelectionContainer, SelectLocationButton } from "./styles";
+import { CepInput, LocationSelectionContainer, } from "./styles";
 import axios from "axios"
 import { LocationSelectionMenuContext } from "../../Header";
-
-const BRAZIl_STATES_API_URL = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/"
-
-interface BrazilianStatesApiResponse {
-  id: number;
-  nome: string;
-  regiao: {
-    id: number;
-    nome: string;
-    sigla: string;
-  };
-  sigla: string;
-}
-let BrazilianStates: BrazilianStatesApiResponse[] = []
+import { useForm } from "react-hook-form";
 
 export function LocationSelectionMenu() {
-  const [isFetching, setIsFetching] = useState(true);
   const { setLocation } = useContext(LocationContext)
 
-  const {isSelectingLocation, setIsSelectingLocation} = useContext(LocationSelectionMenuContext)
+  const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
-  function getBrazilianStates() {
-    axios.get(BRAZIl_STATES_API_URL)
-      .then(response => {
-        BrazilianStates = response.data
-        setIsFetching(false)
-      })
-      .catch(err => console.log(err));
-  }
+  const cepFirstPart = useRef<HTMLInputElement>(null);
+  const cepSecondPart = useRef<HTMLInputElement>(null);
 
-  function handleKeyDown(e: KeyboardEvent){
-    if((e.key === 'Escape') && isSelectingLocation){
-        setIsSelectingLocation(false)
+  function handleFirstPart(e : ChangeEvent<HTMLInputElement>){
+    setValue("cepFirstPart", e.target.value)
+
+    if(e.target.value.length === 5 ){
+      cepSecondPart.current && cepSecondPart.current.focus();
+    }
+    else if(e.target.value.length === 6){
+      e.target.value = e.target.value.slice(0, 5)
     }
   }
 
-  useEffect(() => {
-    if(BrazilianStates.length == 0){
-      getBrazilianStates()
-    }else{
-      setIsFetching(false)
-    }
+  function handleSecondPart(e : ChangeEvent<HTMLInputElement>){
+    setValue("cepSecondPart", e.target.value);
 
-    window.addEventListener('keydown', handleKeyDown)
-    
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);  
+    if(e.target.value.length === 0){
+      cepFirstPart.current && cepFirstPart.current.focus();
     }
-  }, [isSelectingLocation])
+    else if(e.target.value.length === 4){
+      e.target.value = e.target.value.slice(0, 3)
+    }
+  }
+
+  function onSubmit(data: any) {
+    setIsSelectingLocation(false)
+    console.log(data)
+  }
 
   return (
-    <LocationSelectionContainer>
-      {!isFetching ? (
-        <>
-          {BrazilianStates.map((state, index) => (
-            <SelectLocationButton
-              key={index}
-              onClick={() => {
-                setLocation(state.nome);
-                setIsSelectingLocation(false);
-              }}
-            >
-              {state.nome}
-            </SelectLocationButton>
-          ))}
-        </>
-      ) : (
-        <>
-          <h1>Aguarde...</h1>
-        </>
-      )}
+    <LocationSelectionContainer onSubmit={handleSubmit(onSubmit)}>
+      <h1>Insira um CEP do Brasil</h1>
+      <CepInput>
+        <input
+          id="cep-first-part"
+          type="number"
+          {...register("cepFirstPart", { required: true, minLength: 5, maxLength: 5 })}
+          ref={cepFirstPart}
+          onChange={(e) => handleFirstPart(e)}
+        />
+        -
+        <input
+          id="cep-second-part"
+          type="number"
+          {...register("cepSecondPart", { required: true, minLength: 3, maxLength: 3 })}
+          ref={cepSecondPart}
+          onChange={(e) => handleSecondPart(e)}
+        />
+      </CepInput>
+
+      {(errors.cepFirstPart || errors.cepSecondPart) &&
+        <p id="invalid-cep-message">!CEP inválido</p>
+      }
+
+      <button type="submit">Confirmar</button>
+
     </LocationSelectionContainer>
   )
 }
