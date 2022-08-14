@@ -16,12 +16,14 @@ export function LocationSelectionMenu() {
 
   function handleFirstPart(e : ChangeEvent<HTMLInputElement>){
     setValue("cepFirstPart", e.target.value)
-
+    
     if(e.target.value.length === 5 ){
       cepSecondPart.current && cepSecondPart.current.focus();
     }
     else if(e.target.value.length === 6){
-      e.target.value = e.target.value.slice(0, 5)
+      let newValue = e.target.value.slice(0, 5)
+      e.target.value = newValue;
+      setValue("cepFirstPart", newValue);
     }
   }
 
@@ -32,7 +34,9 @@ export function LocationSelectionMenu() {
       cepFirstPart.current && cepFirstPart.current.focus();
     }
     else if(e.target.value.length === 4){
-      e.target.value = e.target.value.slice(0, 3)
+      let newValue = e.target.value.slice(0, 3);
+      e.target.value = newValue;
+      setValue("cepSecondPart", newValue);
     }
   }
 

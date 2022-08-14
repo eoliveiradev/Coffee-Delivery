@@ -61,7 +61,6 @@ export const CepInput = styled.div`
   input{
     height: 30px;
 
-    text-indent: 10px;
     text-align: center;
 
     border: 1px solid ${props => props.theme["base-colors"]["base-button"]};
