@@ -8,63 +8,66 @@ import { LocationContext } from "../../layouts/DefaultLayout";
 import { ShoppingCartContext } from "../../App";
 import { Link } from "react-router-dom";
 
-interface LocationSelectionMenuContextType{
+interface LocationSelectionMenuContextType {
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
   isSelectingLocation: boolean;
 }
 export const LocationSelectionMenuContext = createContext({} as LocationSelectionMenuContextType);
 
 export function DefaultHeader() {
-  const [isSelectingLocation, setIsSelectingLocation] =useState(false);
+  const [isSelectingLocation, setIsSelectingLocation] = useState(true);
   const { location } = useContext(LocationContext)
   const { numberOfItemsInCart } = useContext(ShoppingCartContext)
 
   return (
     <DefaultHeaderContainer>
-      <InnerHeader>   
-        <Link 
+      <InnerHeader>
+        <Link
           to={"/"}
           id="logo__link"
         >
           <img src={logo}></img>
         </Link>
-        
+
 
         <HeaderNavigation
           onMouseLeave={() => setIsSelectingLocation(false)}
         >
-          <LocationSelector 
-            onClick={() => setIsSelectingLocation(!isSelectingLocation)}
-          >
-            <MapPin 
-              size={22} 
-              weight="fill" 
-              color={defaultTheme["product-colors"]["purple"]} 
-            />
-            <span>
-              {location}
-            </span>
-          </LocationSelector>
-          <LocationSelectionMenuContext.Provider
-            value={{
-              isSelectingLocation,
-              setIsSelectingLocation
-            }}
-          >
-            {isSelectingLocation && (
-                <LocationSelectionMenu />
-            )}
-          </LocationSelectionMenuContext.Provider>
+          <div>
+            <LocationSelector
+              onClick={() => setIsSelectingLocation(!isSelectingLocation)}
+            >
+              <MapPin
+                size={22}
+                weight="fill"
+                color={defaultTheme["product-colors"]["purple"]}
+              />
+              <span>
+                {location}
+              </span>
+            </LocationSelector>
 
-          <Link 
+            <LocationSelectionMenuContext.Provider
+              value={{
+                isSelectingLocation,
+                setIsSelectingLocation
+              }}
+            >
+              {isSelectingLocation && (
+                <LocationSelectionMenu />
+              )}
+            </LocationSelectionMenuContext.Provider>
+          </div>
+
+          <Link
             to={"/checkout"}
             onFocus={() => setIsSelectingLocation(false)}
           >
             <CartWrapper>
-              <span>{ numberOfItemsInCart }</span>
-              <ShoppingCart 
-                size={22} 
-                weight="fill" 
+              <span>{numberOfItemsInCart}</span>
+              <ShoppingCart
+                size={22}
+                weight="fill"
               />
             </CartWrapper>
           </Link>
