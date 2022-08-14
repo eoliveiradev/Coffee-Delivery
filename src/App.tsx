@@ -99,13 +99,10 @@ function App() {
     const locationDB = getDB("location")
     
     if(locationDB === null){
-      console.log("1")
       setDB("location", location)
     } else if(location === defaultLocation && locationDB.length > 0){
-      console.log("2")
       setLocation(locationDB)
     } else if (location != defaultLocation){
-      console.log("3")
       setDB("location", location)
     }
   }
