@@ -1,58 +1,86 @@
 import styled from "styled-components";
 
-export const LocationSelectionContainer = styled.div`
-
+export const LocationSelectionContainer = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   
   position: absolute;
-  bottom: -538px;
+  top: 80px;
 
-  height: 558px;
+  right: 6%;
+
   width: 75vw;
-  max-width: 268px;
-  right: 50px;
+  max-width: 180px;
+
+  padding: 10px 20px;
 
   border: 1px solid black;
 
   background-color: ${props => props.theme["base-colors"]["background"]};
 
-  overflow-y: scroll;
-
   border-radius: 6px;
+
+  h1{
+    font-family: ${props => props.theme["fonts"]["header"]};
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: ${props => props.theme["base-colors"]["base-title"]};
+    
+  }
+
+  #invalid-cep-message{
+    font-size: 0.8rem;
+    color: #a6312b;
+  }
+
+  button{
+    width: 100%;
+    min-height: 26px;
+
+    border-radius: 6px;
+
+    font-size: 0.8rem;
+    color: white;
+
+    background-color: ${props => props.theme["product-colors"]["yellow"]};
+  }
+
 `
 
-export const SelectLocationButton = styled.button`
+export const CepInput = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 6px;
 
-  width: 168px;
-  line-height: 26px;
+  width: 100%;
 
-  font-family: ${props => props.theme["fonts"]["primary-text"]};
-  font-size: 1rem;
-  font-weight: bold;
+  input{
+    height: 30px;
 
-  border-radius: 6px 6px 0px 0px;
-  border-bottom: 1px solid ${props => props.theme["product-colors"]["purple-dark"]};
-  background-color:  inherit;
+    text-indent: 10px;
+    text-align: center;
 
-  padding-bottom: 0;
+    border: 1px solid ${props => props.theme["base-colors"]["base-button"]};
+    border-radius: 4px;
+    
+    background:  ${props => props.theme["base-colors"]["base-input"]};
 
-  &:focus{
-    background-color: ${props => props.theme["product-colors"]["purple-light"]};
-    color: ${props => props.theme["product-colors"]["purple-dark"]};
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
-  &:first-child{
-    margin-top: 15px;
-  }
-  &:last-child{
-    margin-bottom: 15px;
+  #cep-first-part{
+    width: 50%;
   }
 
+  #cep-second-part{
+    width: 40%;
+  }
 `
