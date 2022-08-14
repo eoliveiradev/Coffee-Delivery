@@ -19,7 +19,7 @@ interface ShoppingCartContextType {
 
 export const getDB = (DB: string) => JSON.parse(localStorage.getItem(DB) as string) ?? [];
 export const setDB = (DBName: string, newDB: any) => localStorage.setItem(DBName, JSON.stringify(newDB));
-export const banco = getDB('shoppingCart');
+export const shoppingCartDB = getDB('shoppingCart');
 
 interface AddressType {
   cep: string;
@@ -66,10 +66,10 @@ function App() {
       ), 0)
 
   function handleAddCartToCache() {
-    if(banco.length === 0){
+    if(shoppingCartDB.length === 0){
       setDB('shoppingCart', shoppingCart)
-    }else if(shoppingCart.length === 0 && banco.length > 0){
-      setShoppingCart(banco)
+    }else if(shoppingCart.length === 0 && shoppingCartDB.length > 0){
+      setShoppingCart(shoppingCartDB)
     }else if (shoppingCart.length > 0){
       setDB('shoppingCart', shoppingCart)
     }
