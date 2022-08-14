@@ -44,6 +44,12 @@ interface ConfirmedOrderDataContextType {
   setConfirmedOrderData: React.Dispatch<React.SetStateAction<ConfirmedOrderDataType>>;
 }
 
+interface LocationContextType {
+  location: string;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const LocationContext = createContext({} as LocationContextType)
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
 export const ConfirmedOrderDataContext = createContext({} as ConfirmedOrderDataContextType)
 
@@ -52,6 +58,8 @@ function App() {
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState<number>(0)
   const [orderTotalPrice, setOrderTotalPrice] = useState(0)
   const [confirmedOrderData, setConfirmedOrderData] = useState<ConfirmedOrderDataType>({} as ConfirmedOrderDataType)
+  const defaultLocation: string = "Localização"
+  const [location, setLocation] = useState(defaultLocation)
 
   let totalItemsInCart: number = shoppingCart
     .reduce(
@@ -66,11 +74,11 @@ function App() {
       ), 0)
 
   function handleAddCartToCache() {
-    if(shoppingCartDB.length === 0){
+    if (shoppingCartDB.length === 0) {
       setDB('shoppingCart', shoppingCart)
-    }else if(shoppingCart.length === 0 && shoppingCartDB.length > 0){
+    } else if (shoppingCart.length === 0 && shoppingCartDB.length > 0) {
       setShoppingCart(shoppingCartDB)
-    }else if (shoppingCart.length > 0){
+    } else if (shoppingCart.length > 0) {
       setDB('shoppingCart', shoppingCart)
     }
   }
@@ -87,6 +95,25 @@ function App() {
     !(confirmedOrderData.products && shoppingCart.length === 0) && handleAddCartToCache();
   }, [shoppingCart])
 
+  function handleAddLocationToCache(){
+    const locationDB = getDB("location")
+    
+    if(locationDB === null){
+      console.log("1")
+      setDB("location", location)
+    } else if(location === defaultLocation && locationDB.length > 0){
+      console.log("2")
+      setLocation(locationDB)
+    } else if (location != defaultLocation){
+      console.log("3")
+      setDB("location", location)
+    }
+  }
+
+  useEffect(() => {
+    handleAddLocationToCache();
+  }, [location])
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <ShoppingCartContext.Provider
@@ -97,12 +124,14 @@ function App() {
           orderTotalPrice: orderTotalPrice
         }}
       >
-        <ConfirmedOrderDataContext.Provider value={{ confirmedOrderData, setConfirmedOrderData }}>
-          <BrowserRouter>
-            <GlobalStyle />
-            <Router />
-          </BrowserRouter>
-        </ConfirmedOrderDataContext.Provider>
+        <LocationContext.Provider value={{ location, setLocation }}>
+          <ConfirmedOrderDataContext.Provider value={{ confirmedOrderData, setConfirmedOrderData }}>
+            <BrowserRouter>
+              <GlobalStyle />
+              <Router />
+            </BrowserRouter>
+          </ConfirmedOrderDataContext.Provider>
+        </LocationContext.Provider>
       </ShoppingCartContext.Provider>
     </ThemeProvider>
   )

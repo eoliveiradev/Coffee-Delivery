@@ -1,9 +1,11 @@
 import React, { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
-import { LocationContext } from "../../../../layouts/DefaultLayout";
+import { LocationContext } from "../../../../App";
 import { CepInput, LocationSelectionContainer, } from "./styles";
 import axios from "axios"
 import { LocationSelectionMenuContext } from "../../Header";
 import { useForm } from "react-hook-form";
+import { CepDataType } from "../../../../pages/Checkout/components/CompleteOrder/CompleteOrder";
+
 
 export function LocationSelectionMenu() {
   const { setLocation } = useContext(LocationContext)
@@ -11,6 +13,8 @@ export function LocationSelectionMenu() {
   const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
+  const [isCepValid, setIsCepValid] = useState(true);
+  const [fullCep, setFullCep] = useState("");
   const cepFirstPart = useRef<HTMLInputElement>(null);
   const cepSecondPart = useRef<HTMLInputElement>(null);
 
@@ -29,11 +33,34 @@ export function LocationSelectionMenu() {
     if (event.target.value.length === (cepPart === "cepFirstPart" ? partLength : 0)) {
       variations[cepPart]();
     }else if(event.target.value.length === partLength + 1){
-      let newValue = event.target.value.slice(0, partLength);
+      const newValue = event.target.value.slice(0, partLength);
       event.target.value = newValue;
       setValue(cepPart, newValue);
     }
+
+    if(cepFirstPart.current && cepSecondPart.current){
+      setFullCep(cepFirstPart.current.value + cepSecondPart.current.value)
+    }
   }
+
+  let cepData : CepDataType
+  function handleFetchCepData(){
+    const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${fullCep}}`
+
+    axios.get(CEP_API_URL)
+      .then(response => {
+        cepData = response.data
+        setIsCepValid(true)
+      })
+      .catch(error => {
+        console.log(error)
+        setIsCepValid(false)
+      })
+  }
+
+  useEffect(() => {
+    fullCep.length === 8 && handleFetchCepData();
+  }, [fullCep])
 
   function onSubmit(data: any) {
     setIsSelectingLocation(false)
@@ -61,11 +88,17 @@ export function LocationSelectionMenu() {
         />
       </CepInput>
 
-      {(errors.cepFirstPart || errors.cepSecondPart) &&
+      {(errors.cepFirstPart || errors.cepSecondPart || !isCepValid) &&
         <p id="invalid-cep-message">!CEP inválido</p>
       }
 
-      <button type="submit">Confirmar</button>
+      <button 
+        type="submit" 
+        disabled={!isCepValid}
+        onClick={() => setLocation(`${cepData.city}, ${cepData.state} `)}  
+      >
+        Confirmar
+      </button>
 
     </LocationSelectionContainer>
   )

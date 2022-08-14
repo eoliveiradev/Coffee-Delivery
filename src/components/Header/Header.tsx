@@ -4,8 +4,7 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
-import { LocationContext } from "../../layouts/DefaultLayout";
-import { ShoppingCartContext } from "../../App";
+import { LocationContext, ShoppingCartContext } from "../../App";
 import { Link } from "react-router-dom";
 
 interface LocationSelectionMenuContextType {
