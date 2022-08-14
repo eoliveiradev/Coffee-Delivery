@@ -19,6 +19,12 @@ export function DefaultHeader() {
   const { location } = useContext(LocationContext)
   const { numberOfItemsInCart } = useContext(ShoppingCartContext)
 
+  function handleKeyDown(event : React.KeyboardEvent<HTMLDivElement>){
+    if(event.key === 'Escape'){
+      setIsSelectingLocation(false);
+    }
+  }
+
   return (
     <DefaultHeaderContainer>
       <InnerHeader>
@@ -33,7 +39,7 @@ export function DefaultHeader() {
         <HeaderNavigation
           onMouseLeave={() => setIsSelectingLocation(false)}
         >
-          <div>
+          <div tabIndex={0} onKeyDown={(e) => handleKeyDown(e)}>
             <LocationSelector
               onClick={() => setIsSelectingLocation(!isSelectingLocation)}
             >

@@ -17,7 +17,7 @@ interface CompleteOrderProps {
   setIsCepInvalid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface CepDataType{
+export interface CepDataType{
   cep: string;
   city: string;
   location: {
