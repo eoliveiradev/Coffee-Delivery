@@ -44,14 +44,14 @@ export function LocationSelectionMenu() {
     }
   }
 
-  let cepData : CepDataType
+  const [cepData, setCepData] = useState<CepDataType>({} as CepDataType)
   function handleFetchCepData(){
     const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${fullCep}}`
     setIsFetchingCepData(true)
 
     axios.get(CEP_API_URL)
       .then(response => {
-        cepData = response.data
+        setCepData(response.data)
         setIsFetchingCepData(false)
         setIsCepValid(true)
       })
@@ -66,9 +66,17 @@ export function LocationSelectionMenu() {
     fullCep.length === 8 && handleFetchCepData();
   }, [fullCep])
 
-  function onSubmit(data: any) {
+  function onSubmit() {
     setIsSelectingLocation(false)
-    setLocationData({...locationData, isLocationValid: true, cep: cepData.cep, street: cepData.street, neighborhood: cepData.neighborhood, city: cepData.city, state: cepData.state})
+    setLocationData({
+      ...locationData, 
+      isLocationValid: true,
+      cep: cepData.cep, 
+      street: cepData.street, 
+      neighborhood: cepData.neighborhood, 
+      city: cepData.city, 
+      state: cepData.state
+    })
   }
 
   return (
@@ -98,8 +106,8 @@ export function LocationSelectionMenu() {
           errors.cepSecondPart || 
           !isCepValid
         ) && 
-        (
-          !isFetchingCepData || 
+        !(
+          isFetchingCepData || 
           isCepValid
         ) 
       ) &&
@@ -121,7 +129,7 @@ export function LocationSelectionMenu() {
 
       <button 
         type="submit" 
-        disabled={!isCepValid}
+        disabled={!isCepValid || isFetchingCepData}
       >
         Confirmar
       </button>
