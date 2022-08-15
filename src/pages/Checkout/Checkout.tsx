@@ -41,7 +41,7 @@ export function Checkout() {
     setDB('shoppingCart', [])
     
     console.log(newOrderData) // Will send data to api in the future.
-    navigateTo("/pedido-confirmado")
+    navigateTo("/Coffee-Delivery/pedido-confirmado")
   }
 
   return (
