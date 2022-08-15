@@ -1,8 +1,8 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "phosphor-react";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios"
 import { useFormContext } from "react-hook-form";
-import { paymentMethodType } from "../../../../App";
+import { LocationContext, paymentMethodType } from "../../../../App";
 import {
   AddressFormContainer,
   ChoosePaymentMethodContainer,
@@ -36,13 +36,14 @@ export interface CepDataType{
 export function CompleteOrder(props: CompleteOrderProps) {
   const { register, setValue, formState: { errors } } = useFormContext()
   const [cepLenght, setCepLenght] = useState(0);
+  const {locationData, setLocationData} = useContext(LocationContext)
 
   let cep: string = ""
   function handleCepChange() {
     setCepLenght(cep.length)
     const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}`
 
-    if (cep.length == 8) {
+    if (cep.length === 8) {
       axios.get(CEP_API_URL)
         .then(response => {
           let cepData: CepDataType = response.data
@@ -51,6 +52,12 @@ export function CompleteOrder(props: CompleteOrderProps) {
           setValue("neighborhood", cepData.neighborhood);
           setValue("city", cepData.city);
           setValue("state", cepData.state);
+
+          setLocationData({
+            cep: cepData.cep, 
+            city: cepData.city, 
+            state: cepData.state
+          })
 
           props.setIsCepInvalid(false)
         })
@@ -62,6 +69,15 @@ export function CompleteOrder(props: CompleteOrderProps) {
       props.setIsCepInvalid(true)
     }
   }
+
+  useEffect(() => {
+    if(locationData.cep.length === 8 && props.isCepInvalid){
+      props.setIsCepInvalid(false)
+      setValue("cep", locationData.cep);
+      cep = locationData.cep;
+      handleCepChange();
+    }
+  }, [locationData])
 
   return (
     <CompleteOrderContainer>

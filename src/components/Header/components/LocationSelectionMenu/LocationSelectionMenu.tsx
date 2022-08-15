@@ -8,7 +8,7 @@ import { CepDataType } from "../../../../pages/Checkout/components/CompleteOrder
 
 
 export function LocationSelectionMenu() {
-  const { setLocation } = useContext(LocationContext)
+  const { setLocationData, locationData } = useContext(LocationContext)
 
   const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm()
@@ -64,7 +64,7 @@ export function LocationSelectionMenu() {
 
   function onSubmit(data: any) {
     setIsSelectingLocation(false)
-    console.log(data)
+    setLocationData({cep: cepData.cep, city: cepData.city, state: cepData.state})
   }
 
   return (
@@ -95,11 +95,9 @@ export function LocationSelectionMenu() {
       <button 
         type="submit" 
         disabled={!isCepValid}
-        onClick={() => setLocation(`${cepData.city}, ${cepData.state} `)}  
       >
         Confirmar
       </button>
-
     </LocationSelectionContainer>
   )
 }

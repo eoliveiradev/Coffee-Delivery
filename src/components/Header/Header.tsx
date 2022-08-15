@@ -14,8 +14,8 @@ interface LocationSelectionMenuContextType {
 export const LocationSelectionMenuContext = createContext({} as LocationSelectionMenuContextType);
 
 export function DefaultHeader() {
-  const [isSelectingLocation, setIsSelectingLocation] = useState(true);
-  const { location } = useContext(LocationContext)
+  const [isSelectingLocation, setIsSelectingLocation] = useState(false);
+  const { locationData } = useContext(LocationContext)
   const { numberOfItemsInCart } = useContext(ShoppingCartContext)
 
   function handleKeyDown(event : React.KeyboardEvent<HTMLDivElement>){
@@ -48,7 +48,7 @@ export function DefaultHeader() {
                 color={defaultTheme["product-colors"]["purple"]}
               />
               <span>
-                {location}
+                {locationData.cep ? (`${locationData.city}, ${locationData.state}`) : locationData.defaultValue}
               </span>
             </LocationSelector>
 

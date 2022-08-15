@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { CoffeeItemType } from './data/Menu/MenuItems';
+import { CepDataType } from './pages/Checkout/components/CompleteOrder/CompleteOrder';
 import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/themes/defaultTheme';
@@ -44,9 +45,16 @@ interface ConfirmedOrderDataContextType {
   setConfirmedOrderData: React.Dispatch<React.SetStateAction<ConfirmedOrderDataType>>;
 }
 
+interface locationDataType{
+  cep: string;
+  city: string;
+  state: string;
+  defaultValue?: string;
+}
+
 interface LocationContextType {
-  location: string;
-  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  locationData: locationDataType;
+  setLocationData: React.Dispatch<React.SetStateAction<locationDataType>>;
 }
 
 export const LocationContext = createContext({} as LocationContextType)
@@ -58,8 +66,14 @@ function App() {
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState<number>(0)
   const [orderTotalPrice, setOrderTotalPrice] = useState(0)
   const [confirmedOrderData, setConfirmedOrderData] = useState<ConfirmedOrderDataType>({} as ConfirmedOrderDataType)
-  const defaultLocation: string = "Localização"
-  const [location, setLocation] = useState(defaultLocation)
+  const defaultLocationData: locationDataType = {
+    cep: "",
+    city: "",
+    state: "",
+    defaultValue: "Localização",
+    
+  }
+  const [locationData, setLocationData] = useState<locationDataType>(defaultLocationData)
 
   let totalItemsInCart: number = shoppingCart
     .reduce(
@@ -99,17 +113,17 @@ function App() {
     const locationDB = getDB("location")
     
     if(locationDB === null){
-      setDB("location", location)
-    } else if(location === defaultLocation && locationDB.length > 0){
-      setLocation(locationDB)
-    } else if (location != defaultLocation){
-      setDB("location", location)
+      setDB("location", locationData)
+    } else if(locationData === defaultLocationData && locationDB.cep){
+      setLocationData(locationDB)
+    } else if (locationData != defaultLocationData){
+      setDB("location", locationData)
     }
   }
 
   useEffect(() => {
     handleAddLocationToCache();
-  }, [location])
+  }, [locationData])
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -121,7 +135,7 @@ function App() {
           orderTotalPrice: orderTotalPrice
         }}
       >
-        <LocationContext.Provider value={{ location, setLocation }}>
+        <LocationContext.Provider value={{ locationData, setLocationData }}>
           <ConfirmedOrderDataContext.Provider value={{ confirmedOrderData, setConfirmedOrderData }}>
             <BrowserRouter>
               <GlobalStyle />
