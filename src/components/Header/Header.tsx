@@ -28,7 +28,7 @@ export function DefaultHeader() {
     <DefaultHeaderContainer>
       <InnerHeader>
         <Link
-          to={"/Coffee-Delivery/"}
+          to={"/"}
           id="logo__link"
         >
           <img src={logo}></img>
@@ -64,7 +64,7 @@ export function DefaultHeader() {
           </div>
 
           <Link
-            to={"/Coffee-Delivery/checkout"}
+            to={"/checkout"}
             onFocus={() => setIsSelectingLocation(false)}
           >
             <CartWrapper>

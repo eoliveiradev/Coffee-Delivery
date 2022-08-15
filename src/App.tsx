@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { CoffeeItemType } from './data/Menu/MenuItems';
 import { CepDataType } from './pages/Checkout/components/CompleteOrder/CompleteOrder';
@@ -143,10 +143,10 @@ function App() {
       >
         <LocationContext.Provider value={{ locationData, setLocationData }}>
           <ConfirmedOrderDataContext.Provider value={{ confirmedOrderData, setConfirmedOrderData }}>
-            <BrowserRouter>
+            <HashRouter>
               <GlobalStyle />
               <Router />
-            </BrowserRouter>
+            </HashRouter>
           </ConfirmedOrderDataContext.Provider>
         </LocationContext.Provider>
       </ShoppingCartContext.Provider>
