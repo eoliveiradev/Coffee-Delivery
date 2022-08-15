@@ -9,6 +9,7 @@ import { CepDataType } from "../../../../pages/Checkout/components/CompleteOrder
 
 export function LocationSelectionMenu() {
   const { setLocationData, locationData } = useContext(LocationContext)
+  const [isFetchingCepData, setIsFetchingCepData] = useState(false);
 
   const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm()
@@ -46,14 +47,17 @@ export function LocationSelectionMenu() {
   let cepData : CepDataType
   function handleFetchCepData(){
     const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${fullCep}}`
+    setIsFetchingCepData(true)
 
     axios.get(CEP_API_URL)
       .then(response => {
         cepData = response.data
+        setIsFetchingCepData(false)
         setIsCepValid(true)
       })
       .catch(error => {
         console.log(error)
+        setIsFetchingCepData(false)
         setIsCepValid(false)
       })
   }
@@ -88,8 +92,31 @@ export function LocationSelectionMenu() {
         />
       </CepInput>
 
-      {(errors.cepFirstPart || errors.cepSecondPart || !isCepValid) &&
-        <p id="invalid-cep-message">!CEP inválido</p>
+      {(
+        (
+          errors.cepFirstPart  || 
+          errors.cepSecondPart || 
+          !isCepValid
+        ) && 
+        (
+          !isFetchingCepData || 
+          isCepValid
+        ) 
+      ) &&
+        <p 
+          id="invalid-cep-message" 
+          className="cep-errors-message"
+        >
+          !CEP inválido
+        </p>
+      }
+      {isFetchingCepData && 
+        <p 
+          id="fetching-cepData-message" 
+          className="cep-errors-message"
+        >
+          Verificando CEP...
+        </p>
       }
 
       <button 

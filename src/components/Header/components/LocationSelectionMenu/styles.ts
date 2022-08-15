@@ -31,9 +31,17 @@ export const LocationSelectionContainer = styled.form`
     
   }
 
-  #invalid-cep-message{
+  .cep-errors-message{
     font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  #invalid-cep-message{
     color: #a6312b;
+  }
+
+  #fetching-cepData-message{
+    color: ${props => props.theme["product-colors"]["yellow-dark"]};
   }
 
   button{
