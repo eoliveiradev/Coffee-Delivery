@@ -14,7 +14,7 @@ export function LocationSelectionMenu() {
   const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
-  const [isCepValid, setIsCepValid] = useState(true);
+  const [isCepValid, setIsCepValid] = useState(false);
   const [fullCep, setFullCep] = useState("");
   const cepFirstPart = useRef<HTMLInputElement>(null);
   const cepSecondPart = useRef<HTMLInputElement>(null);
@@ -86,6 +86,8 @@ export function LocationSelectionMenu() {
         <input
           id="cep-first-part"
           type="number"
+          maxLength={5}
+          autoFocus
           {...register("cepFirstPart", { required: true, minLength: 5, maxLength: 5 })}
           ref={cepFirstPart}
           onChange={(e) => handleCepChange(e, "cepFirstPart", 5)}
@@ -94,6 +96,7 @@ export function LocationSelectionMenu() {
         <input
           id="cep-second-part"
           type="number"
+          maxLength={3}
           {...register("cepSecondPart", { required: true, minLength: 3, maxLength: 3 })}
           ref={cepSecondPart}
           onChange={(e) => handleCepChange(e, "cepSecondPart", 3)}
@@ -104,7 +107,7 @@ export function LocationSelectionMenu() {
         (
           errors.cepFirstPart  || 
           errors.cepSecondPart || 
-          !isCepValid
+          (!isCepValid && fullCep.length === 8)
         ) && 
         !(
           isFetchingCepData || 

@@ -54,6 +54,16 @@ export const LocationSelectionContainer = styled.form`
     color: white;
 
     background-color: ${props => props.theme["product-colors"]["yellow"]};
+
+    &:disabled{
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    &:focus-visible{
+      outline: 2px solid black;
+      outline-offset: 2px;
+    }
   }
 
 `
@@ -80,6 +90,10 @@ export const CepInput = styled.div`
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+
+    &:focus{
+      border: 1px solid ${props => props.theme["product-colors"]["yellow"]};
     }
   }
 
