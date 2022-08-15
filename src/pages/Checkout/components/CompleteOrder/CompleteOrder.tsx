@@ -42,7 +42,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
   function handleCepChange() {
     setCepLenght(cep.length)
     const CEP_API_URL = `https://brasilapi.com.br/api/cep/v2/{${cep}}`
-
+    console.log(cep)
     if (cep.length === 8) {
       axios.get(CEP_API_URL)
         .then(response => {
@@ -64,7 +64,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
           console.log(error)
           props.setIsCepInvalid(true)
         })
-    }else {
+    }
+    else {
       props.setIsCepInvalid(true)
     }
   }
@@ -105,7 +106,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
             <label>
               <input
                 id="cep"
-                type="number"
+                type="text"
+                maxLength={8}
                 placeholder="CEP (apenas números)"
                 {...register("cep", { required: true, minLength: 8, maxLength: 8 })}
                 onChange={(e) => {
