@@ -64,7 +64,7 @@ export function LocationSelectionMenu() {
 
   function onSubmit(data: any) {
     setIsSelectingLocation(false)
-    setLocationData({cep: cepData.cep, city: cepData.city, state: cepData.state})
+    setLocationData({...locationData, isLocationValid: true, cep: cepData.cep, street: cepData.street, neighborhood: cepData.neighborhood, city: cepData.city, state: cepData.state})
   }
 
   return (

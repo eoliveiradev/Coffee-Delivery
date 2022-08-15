@@ -54,7 +54,11 @@ export function CompleteOrder(props: CompleteOrderProps) {
           setValue("state", cepData.state);
 
           setLocationData({
+            ...locationData,
+            isLocationValid: true,
             cep: cepData.cep, 
+            street: cepData.street,
+            neighborhood: cepData.neighborhood,
             city: cepData.city, 
             state: cepData.state
           })
@@ -71,12 +75,12 @@ export function CompleteOrder(props: CompleteOrderProps) {
   }
 
   useEffect(() => {
-    if(locationData.cep.length === 8 && props.isCepInvalid){
-      props.setIsCepInvalid(false)
-      setValue("cep", locationData.cep);
-      cep = locationData.cep;
-      handleCepChange();
-    }
+    props.setIsCepInvalid(!locationData.isLocationValid)
+    setValue("cep", locationData.cep);
+    setValue("street", locationData.street);
+    setValue("neighborhood", locationData.neighborhood);
+    setValue("city", locationData.city);
+    setValue("state", locationData.state);
   }, [locationData])
 
   return (
