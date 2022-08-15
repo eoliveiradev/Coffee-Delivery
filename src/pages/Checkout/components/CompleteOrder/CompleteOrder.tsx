@@ -48,11 +48,6 @@ export function CompleteOrder(props: CompleteOrderProps) {
         .then(response => {
           let cepData: CepDataType = response.data
 
-          setValue("street", cepData.street);
-          setValue("neighborhood", cepData.neighborhood);
-          setValue("city", cepData.city);
-          setValue("state", cepData.state);
-
           setLocationData({
             ...locationData,
             isLocationValid: true,
