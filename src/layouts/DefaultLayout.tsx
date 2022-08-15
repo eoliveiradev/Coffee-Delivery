@@ -4,9 +4,6 @@ import { DefaultHeader } from "../components/Header/Header";
 import { Home } from "../pages/Home/Home";
 import { LayoutContainer } from "./styles";
 
-
-
-
 export function DefaultLayout() {
   return (
     <LayoutContainer>

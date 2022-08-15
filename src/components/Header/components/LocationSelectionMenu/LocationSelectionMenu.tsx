@@ -6,7 +6,6 @@ import { LocationSelectionMenuContext } from "../../Header";
 import { useForm } from "react-hook-form";
 import { CepDataType } from "../../../../pages/Checkout/components/CompleteOrder/CompleteOrder";
 
-
 export function LocationSelectionMenu() {
   const { setLocationData, locationData } = useContext(LocationContext)
   const [isFetchingCepData, setIsFetchingCepData] = useState(false);

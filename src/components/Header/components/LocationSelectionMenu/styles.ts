@@ -65,7 +65,6 @@ export const LocationSelectionContainer = styled.form`
       outline-offset: 2px;
     }
   }
-
 `
 
 export const CepInput = styled.div`

@@ -13,6 +13,5 @@ export function Router(){
         <Route path="/pedido-confirmado" element={<SuccessPage/>} />
       </Route>
     </Routes>
-
   )
 }

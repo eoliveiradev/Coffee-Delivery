@@ -34,7 +34,6 @@ export function DefaultHeader() {
           <img src={logo}></img>
         </Link>
 
-
         <HeaderNavigation
           onMouseLeave={() => setIsSelectingLocation(false)}
         >

@@ -11,7 +11,6 @@ export function SuccessPage() {
   return (
     <SuccessPageContainer>
       {confirmedOrderData.products ?
-
         (<>
           <h1>Uhu! Pedido confirmado</h1>
           <p>Agora é só aguardar que logo o café chegará até você</p>
@@ -66,8 +65,6 @@ export function SuccessPage() {
             </div>
             <img src={SuccessPageImage} />
           </DeliveryInfo>
-
-
         </>) :
 
         (<>
@@ -83,8 +80,6 @@ export function SuccessPage() {
             
           </NoConfirmedOrder>
         </>)
-
-
       }
     </SuccessPageContainer>
   )
