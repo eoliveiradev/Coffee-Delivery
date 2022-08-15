@@ -46,7 +46,10 @@ interface ConfirmedOrderDataContextType {
 }
 
 interface locationDataType{
+  isLocationValid: boolean;
   cep: string;
+  street: string;
+  neighborhood: string;
   city: string;
   state: string;
   defaultValue?: string;
@@ -67,7 +70,10 @@ function App() {
   const [orderTotalPrice, setOrderTotalPrice] = useState(0)
   const [confirmedOrderData, setConfirmedOrderData] = useState<ConfirmedOrderDataType>({} as ConfirmedOrderDataType)
   const defaultLocationData: locationDataType = {
+    isLocationValid: false,
     cep: "",
+    street: "",
+    neighborhood: "",
     city: "",
     state: "",
     defaultValue: "Localização",
