@@ -7,10 +7,10 @@ import { SuccessPage } from "./pages/SuccessPage/SuccessPage";
 export function Router(){
   return(
     <Routes>
-      <Route path="/" element={<DefaultLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/pedido-confirmado" element={<SuccessPage/>} />
+      <Route path="/Coffee-Delivery" element={<DefaultLayout />}>
+        <Route path="/Coffee-Delivery/" element={<Home />} />
+        <Route path="/Coffee-Delivery/checkout" element={<Checkout />} />
+        <Route path="/Coffee-Delivery/pedido-confirmado" element={<SuccessPage/>} />
       </Route>
     </Routes>
   )
