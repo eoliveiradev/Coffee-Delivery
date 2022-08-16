@@ -15,6 +15,11 @@ export function Checkout() {
   const {shoppingCart, setShoppingCart } = useContext(ShoppingCartContext)
   const navigateTo = useNavigate()
 
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, [])
+
+
   const addressForm = useForm<any>({
     defaultValues: {
       cep: "",
