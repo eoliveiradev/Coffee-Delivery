@@ -55,7 +55,7 @@ export const DeliveryInfo = styled.div`
     background: linear-gradient(to right bottom, #dbac2c, #ff7936, #ff326b, #f100b2, #8047f8);
   }
 
-  .deliveryInfo__container{
+  .deliveryInfo-container{
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -96,7 +96,7 @@ export const OrderInfo = styled.div`
 
   min-height: 42px;
 
-  .icon__wrapper{
+  .icon-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,7 +119,7 @@ export const OrderInfo = styled.div`
     background-color: ${props => props.theme["product-colors"]["yellow-dark"]};
   }
 
-  .info__wrapper{
+  .info-wrapper{
     p, h1, strong{
       font-size: 1rem;
       color: ${props => props.theme["base-colors"]["base-text"]};

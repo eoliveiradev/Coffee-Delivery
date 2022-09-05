@@ -16,12 +16,12 @@ export function SuccessPage() {
           <p>Agora é só aguardar que logo o café chegará até você</p>
           <DeliveryInfo>
             <div className="linear-gradient-border">
-              <div className="deliveryInfo__container">
+              <div className="deliveryInfo-container">
                 <OrderInfo>
-                  <div className="icon__wrapper purple">
+                  <div className="icon-wrapper purple">
                     <MapPin size={16} color="#fafafa" />
                   </div>
-                  <div className="info__wrapper">
+                  <div className="info-wrapper">
                     <p>
                       Entrega em
                       <strong>
@@ -40,19 +40,19 @@ export function SuccessPage() {
                   </div>
                 </OrderInfo>
                 <OrderInfo>
-                  <div className="icon__wrapper yellow">
+                  <div className="icon-wrapper yellow">
                     <Timer size={16} color="#fafafa" weight="fill" />
                   </div>
-                  <div className="info__wrapper">
+                  <div className="info-wrapper">
                     <h1>Previsão de entrega</h1>
                     <strong>20 min - 30 min </strong>
                   </div>
                 </OrderInfo>
                 <OrderInfo>
-                  <div className="icon__wrapper yellow-dark">
+                  <div className="icon-wrapper yellow-dark">
                     <CurrencyDollar size={16} color="#fafafa" weight="fill" />
                   </div>
-                  <div className="info__wrapper">
+                  <div className="info-wrapper">
                     <h1>Pagamento na entrega</h1>
                     <strong>
                       {confirmedOrderData.paymentMethod == "cash" && ("Dinheiro")}
