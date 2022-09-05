@@ -41,7 +41,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
         <CartItemInfo>
           <h1>{props.shoppingCartItem.name}</h1>
           <EditCartItem>
-            <span className="counter__wrapper">
+            <span className="counter-wrapper">
               <Counter counter={counter} setCounter={setCounter} />
             </span>
             <RemoveCartItem
@@ -54,7 +54,7 @@ export function CartItemDisplay(props: CartItemDisplayProps) {
           </EditCartItem>
         </CartItemInfo>
       </CartItemWrapper>
-      <strong className="price__container">
+      <strong className="price-container">
         {props.shoppingCartItem.currencySymbol}
         {(props.shoppingCartItem.price * shoppingCart[itemIndex].quantity).toFixed(2)}
       </strong>

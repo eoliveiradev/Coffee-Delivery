@@ -9,19 +9,19 @@ interface OrderTotalPriceProps {
 export function OrderTotalPrice(props: OrderTotalPriceProps) {
   return (
     <OrderTotalPriceContainer>
-      <div className="items__total">
+      <div className="items-total">
         Total de itens
         <span>
           {props.curencySymbol} {(props.itemsTotal).toFixed(2)}
         </span>
       </div>
-      <div className="delivery__price">
+      <div className="delivery-price">
         Entrega
         <span>
           {props.curencySymbol} {(props.deliveryPrice).toFixed(2)}
         </span>
       </div>
-      <div className="total__price">
+      <div className="total-price">
         <strong>
           Total
         </strong>

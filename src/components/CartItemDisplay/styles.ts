@@ -10,7 +10,7 @@ export const CartItemDisplayContainer = styled.div`
   width: 100%;
   height: 80px;
 
-  .price__container{
+  .price-container{
     position: absolute;
 
     top: 8px;
@@ -60,7 +60,7 @@ export const EditCartItem = styled.div`
   width: 172px;
   height: 32px;
 
-  .counter__wrapper {
+  .counter-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -62,7 +62,7 @@ export function ProductDisplay(props: productDisplayProps) {
       </ProductInfo>
 
       <BuyWrapper>
-        <div className="price__wrapper">
+        <div className="price-wrapper">
           {props.product.currencySymbol}
           <strong>
             {props.product.price.toFixed(2)}

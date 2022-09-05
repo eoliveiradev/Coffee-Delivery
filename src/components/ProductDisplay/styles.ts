@@ -91,7 +91,7 @@ export const BuyWrapper = styled.footer`
 
   font-size: 0.875rem;
 
-  .price__wrapper{
+  .price-wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
