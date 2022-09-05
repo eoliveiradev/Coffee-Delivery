@@ -54,11 +54,11 @@ export const OrderViewer = styled.div`
     background-color: ${props => props.theme["product-colors"]["purple"]};
   }
 
-  .empty__cart-message{
+  .empty-cart-message{
     text-align: center;
   }
 
-  .key__holder{
+  .key-holder{
     hr{
       height: 1px;
       width: 100%;

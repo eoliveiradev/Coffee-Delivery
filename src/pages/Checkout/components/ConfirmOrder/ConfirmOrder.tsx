@@ -27,7 +27,7 @@ export function ConfirmOrder(props: ConfirmOrderProps) {
             shoppingCart.map((item, index) => {
               if (item.quantity > 0) {
                 return (
-                  <div className="key__holder" key={index}>
+                  <div className="key-holder" key={index}>
                     <CartItemDisplay
                       productsData={MenuItems}
                       productId={item.id}
@@ -40,7 +40,7 @@ export function ConfirmOrder(props: ConfirmOrderProps) {
               }
             }) : (
               <h1 
-                className="empty__cart-message"
+                className="empty-cart-message"
               >
                 Carrinho vazio 😢
               </h1>

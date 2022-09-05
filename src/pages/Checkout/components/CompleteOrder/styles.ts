@@ -55,7 +55,7 @@ export const BaseFormContainer = styled.div`
       min-height: 44px;
     }
 
-    .header__content{
+    .header-content{
       h1{
         font-family: ${props => props.theme["fonts"]["primary-text"]};
         font-size: 1rem;
@@ -79,7 +79,7 @@ export const AddressFormContainer = styled(BaseFormContainer)`
 
   min-height: 292px;
 
-  .form__wrapper{
+  .form-wrapper{
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -99,7 +99,7 @@ export const AddressFormContainer = styled(BaseFormContainer)`
         color: ${props => props.theme["base-colors"]["base-text"]};
       }
 
-      .invalid__input-message{
+      .invalid-input-message{
         position: absolute;
         bottom: -34px;
 

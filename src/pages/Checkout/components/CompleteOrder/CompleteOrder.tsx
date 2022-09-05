@@ -102,7 +102,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
             </div>
           </header>
 
-          <div className="form__wrapper">
+          <div className="form-wrapper">
             <label>
               <input
                 id="cep"
@@ -119,7 +119,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 <>
                   <p>*Apenas números</p>
                   <div
-                    className="invalid__input-message"
+                    className="invalid-input-message"
                   >
                     Cep inválido
                   </div>
@@ -145,7 +145,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 />
                 {errors.number &&
                   <div
-                    className="invalid__input-message"
+                    className="invalid-input-message"
                   >
                     Número Inválido
                   </div>
@@ -192,7 +192,7 @@ export function CompleteOrder(props: CompleteOrderProps) {
                 color="#8047F8"
               />
             </div>
-            <div className="header__content">
+            <div className="header-content">
               <h1>Pagamento</h1>
               <p> O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
             </div>
