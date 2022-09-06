@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
-import { LocationContext } from "../../../../App";
 import { CepInput, LocationSelectionContainer, } from "./styles";
 import axios from "axios"
 import { LocationSelectionMenuContext } from "../../Header";
 import { useForm } from "react-hook-form";
 import { CepDataType } from "../../../../pages/Checkout/components/CompleteOrder/CompleteOrder";
+import { AddressContext } from "../../../../context/AddressContext";
 
 export function LocationSelectionMenu() {
-  const { setLocationData, locationData } = useContext(LocationContext)
+  const { address, setAddress } = useContext(AddressContext)
   const [isFetchingCepData, setIsFetchingCepData] = useState(false);
 
   const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
@@ -67,8 +67,8 @@ export function LocationSelectionMenu() {
 
   function onSubmit() {
     setIsSelectingLocation(false)
-    setLocationData({
-      ...locationData, 
+    setAddress({
+      ...address, 
       isLocationValid: true,
       cep: cepData.cep, 
       street: cepData.street, 

@@ -4,8 +4,9 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
-import { LocationContext, ShoppingCartContext } from "../../App";
+import { ShoppingCartContext } from "../../App";
 import { Link } from "react-router-dom";
+import { AddressContext } from "../../context/AddressContext";
 
 interface LocationSelectionMenuContextType {
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +16,7 @@ export const LocationSelectionMenuContext = createContext({} as LocationSelectio
 
 export function DefaultHeader() {
   const [isSelectingLocation, setIsSelectingLocation] = useState(false);
-  const { locationData } = useContext(LocationContext)
+  const { address } = useContext(AddressContext)
   const { numberOfItemsInCart } = useContext(ShoppingCartContext)
 
   function handleKeyDown(event : React.KeyboardEvent<HTMLDivElement>){
@@ -47,7 +48,7 @@ export function DefaultHeader() {
                 color={defaultTheme["product-colors"]["purple"]}
               />
               <span>
-                {locationData.cep ? (`${locationData.city}, ${locationData.state}`) : locationData.defaultValue}
+                {address.cep ? (`${address.city}, ${address.state}`) : (`Localização`)}
               </span>
             </LocationSelector>
 

@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType, setDB } from "../../App";
+import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
+import { setLS } from "../../utilities/localStorage";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
 import {
@@ -18,7 +19,6 @@ export function Checkout() {
   useEffect(() => {
     scrollTo(0, 0);
   }, [])
-
 
   const addressForm = useForm<any>({
     defaultValues: {
@@ -43,7 +43,7 @@ export function Checkout() {
     setConfirmedOrderData(newOrderData)
 
     setShoppingCart([] as ShoppingCartItemType[])
-    setDB('shoppingCart', [])
+    setLS('shoppingCart', [])
     
     console.log(newOrderData) // Will send data to api in the future.
     navigateTo("/pedido-confirmado")

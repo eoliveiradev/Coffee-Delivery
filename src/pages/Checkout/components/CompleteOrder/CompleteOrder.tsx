@@ -2,13 +2,14 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "pho
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios"
 import { useFormContext } from "react-hook-form";
-import { LocationContext, paymentMethodType } from "../../../../App";
+import { paymentMethodType } from "../../../../App";
 import {
   AddressFormContainer,
   ChoosePaymentMethodContainer,
   CompleteOrderContainer,
   FormSection
 } from "./styles";
+import { AddressContext } from "../../../../context/AddressContext";
 
 interface CompleteOrderProps {
   paymentMethod: string;
@@ -36,7 +37,7 @@ export interface CepDataType{
 export function CompleteOrder(props: CompleteOrderProps) {
   const { register, setValue, formState: { errors } } = useFormContext()
   const [cepLenght, setCepLenght] = useState(0);
-  const {locationData, setLocationData} = useContext(LocationContext)
+  const {address, setAddress} = useContext(AddressContext)
 
   let cep: string = ""
   function handleCepChange() {
@@ -48,8 +49,8 @@ export function CompleteOrder(props: CompleteOrderProps) {
         .then(response => {
           let cepData: CepDataType = response.data
 
-          setLocationData({
-            ...locationData,
+          setAddress({
+            ...address,
             isLocationValid: true,
             cep: cepData.cep, 
             street: cepData.street,
@@ -71,13 +72,13 @@ export function CompleteOrder(props: CompleteOrderProps) {
   }
 
   useEffect(() => {
-    props.setIsCepInvalid(!locationData.isLocationValid)
-    setValue("cep", locationData.cep);
-    setValue("street", locationData.street);
-    setValue("neighborhood", locationData.neighborhood);
-    setValue("city", locationData.city);
-    setValue("state", locationData.state);
-  }, [locationData])
+    props.setIsCepInvalid(!address.isLocationValid)
+    setValue("cep", address.cep);
+    setValue("street", address.street);
+    setValue("neighborhood", address.neighborhood);
+    setValue("city", address.city);
+    setValue("state", address.state);
+  }, [address])
 
   return (
     <CompleteOrderContainer>
