@@ -2,8 +2,9 @@ import { CartItemDisplayContainer, CartItemInfo, CartItemWrapper, EditCartItem, 
 import { CoffeeItemType } from "../../data/Menu/MenuItems"
 import { useContext, useEffect, useState } from "react";
 import { Counter } from "../Counter/Counter";
-import { ShoppingCartContext, ShoppingCartItemType } from "../../App";
+import { ShoppingCartItemType } from "../../App";
 import { Trash } from "phosphor-react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 interface CartItemDisplayProps {
   productsData: CoffeeItemType[];

@@ -1,9 +1,9 @@
 import { CartItemDisplay } from "../../../../components/CartItemDisplay/CartItemDisplay";
 import { ConfirmOrderButton, ConfirmOrderContainer, ConfirmOrderWrapper, OrderViewer } from "./styles";
 import { MenuItems } from "../../../../data/Menu/MenuItems";
-import { ShoppingCartContext } from "../../../../App";
 import { useContext } from "react";
 import { OrderTotalPrice } from "../../../../components/OrderTotalPrice/OrderTotalPrice";
+import { ShoppingCartContext } from "../../../../context/ShoppingCartContext";
 
 interface ConfirmOrderProps {
   isCepInvalid: boolean;

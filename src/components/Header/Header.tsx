@@ -4,9 +4,9 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 import { LocationSelectionMenu } from "./components/LocationSelectionMenu/LocationSelectionMenu";
-import { ShoppingCartContext } from "../../App";
 import { Link } from "react-router-dom";
 import { AddressContext } from "../../context/AddressContext";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 interface LocationSelectionMenuContextType {
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;

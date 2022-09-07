@@ -4,7 +4,7 @@ import { ShoppingCart } from "phosphor-react";
 import { defaultTheme } from "../../styles/themes/defaultTheme";
 import React, { createContext, useContext, useState } from "react";
 import { Counter } from "../Counter/Counter";
-import { ShoppingCartContext } from "../../App";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 type productType = CoffeeItemType
 interface productDisplayProps {

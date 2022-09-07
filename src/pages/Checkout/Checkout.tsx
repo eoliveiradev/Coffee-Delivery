@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartContext, ShoppingCartItemType, paymentMethodType } from "../../App";
+import { ConfirmedOrderDataContext, ConfirmedOrderDataType, ShoppingCartItemType, paymentMethodType } from "../../App";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { setLS } from "../../utilities/localStorage";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { ConfirmOrder } from "./components/ConfirmOrder/ConfirmOrder";
