@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, KeyboardEventHandler, useContext, useEffect, useRef, useState } from "react";
 import { CepInput, LocationSelectionContainer, } from "./styles";
 import axios from "axios"
 import { LocationSelectionMenuContext } from "../../Header";
@@ -10,7 +10,7 @@ export function LocationSelectionMenu() {
   const { address, setAddress } = useContext(AddressContext)
   const [isFetchingCepData, setIsFetchingCepData] = useState(false);
 
-  const { isSelectingLocation, setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
+  const { setIsSelectingLocation } = useContext(LocationSelectionMenuContext)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
   const [isCepValid, setIsCepValid] = useState(false);
@@ -78,8 +78,18 @@ export function LocationSelectionMenu() {
     })
   }
 
+  function handleKeyDown(event : React.KeyboardEvent){
+    if(event.key === 'Escape'){
+      setIsSelectingLocation(false);
+    }
+  }
+
   return (
-    <LocationSelectionContainer onSubmit={handleSubmit(onSubmit)}>
+    <LocationSelectionContainer 
+      onSubmit={handleSubmit(onSubmit)} 
+      onMouseLeave={() => setIsSelectingLocation(false)}
+      onKeyDown={handleKeyDown}
+    >
       <h1>Insira um CEP do Brasil</h1>
       <CepInput>
         <input
