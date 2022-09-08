@@ -2,7 +2,7 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Target } from "pho
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios"
 import { useFormContext } from "react-hook-form";
-import { paymentMethodType } from "../../../../App";
+import { paymentMethodType } from "../../../../context/ConfirmedOrderContext";
 import {
   AddressFormContainer,
   ChoosePaymentMethodContainer,
